@@ -1,6 +1,6 @@
 package bd2.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Traduccion extends Tarea {
 	private String texto;
@@ -31,8 +31,12 @@ public class Traduccion extends Tarea {
 	public Parrafo getParrafo() {
 		return parrafo;
 	}
-	
-	public Idioma getIdiomaOriginal(){
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public Idioma getIdiomaOriginal() {
 		return this.parrafo.getDocumento().getIdioma();
 	}
 

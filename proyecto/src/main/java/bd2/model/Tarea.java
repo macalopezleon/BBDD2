@@ -1,6 +1,6 @@
 package bd2.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Tarea {
 	private Date fecha;
@@ -33,6 +33,10 @@ public class Tarea {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public Boolean getCompleta() {
+		return completa;
 	}
 
 	public void completar() {

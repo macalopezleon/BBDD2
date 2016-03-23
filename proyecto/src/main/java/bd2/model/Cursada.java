@@ -1,6 +1,6 @@
 package bd2.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +16,7 @@ public class Cursada {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cursada(Date inicio, Curso curso, Usuario usuario) {
+	public Cursada(Curso curso, Date inicio, Usuario usuario) {
 		super();
 		this.inicio = inicio;
 		this.curso = curso;

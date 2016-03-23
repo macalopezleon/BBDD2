@@ -12,11 +12,14 @@ public class Diccionario {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Diccionario(Map<String, String> definiciones, String edicion, Idioma idioma) {
+	public Diccionario(Idioma idioma, String edicion) {
 		super();
-		this.definiciones = definiciones;
 		this.edicion = edicion;
 		this.idioma = idioma;
+	}
+
+	public Map<String, String> getDefiniciones() {
+		return definiciones;
 	}
 
 	public String getEdicion() {
@@ -35,7 +38,7 @@ public class Diccionario {
 		this.idioma = idioma;
 	}
 
-	public void agregarDeficion(String clave, String valor) {
+	public void agregarDefinicion(String clave, String valor) {
 		this.definiciones.put(clave, valor);
 	}
 

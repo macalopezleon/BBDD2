@@ -15,6 +15,11 @@ public class Idioma {
 		this.diccionario = diccionario;
 	}
 
+	public Idioma(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

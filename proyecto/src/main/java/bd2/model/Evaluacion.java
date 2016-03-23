@@ -1,5 +1,7 @@
 package bd2.model;
 
+import java.util.Date;
+
 public class Evaluacion extends Tarea {
 	private Integer puntaje;
 	private Traduccion traduccion;
@@ -9,7 +11,18 @@ public class Evaluacion extends Tarea {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getPuntaje() {
+	public Evaluacion(Date fecha, String descripcion, Boolean completa, Traduccion traduccion, Integer puntaje) {
+		super();
+		this.puntaje = puntaje;
+		this.traduccion = traduccion;
+		super.setDescripcion(descripcion);
+		if (completa) {
+			super.completar();
+		}
+		super.setFecha(fecha);
+	}
+
+	public int getPuntaje() {
 		return puntaje;
 	}
 

@@ -21,6 +21,13 @@ public class Curso {
 		this.idioma = idioma;
 	}
 
+	public Curso(String nombre, Idioma idioma, Integer nivel) {
+		super();
+		this.nombre = nombre;
+		this.nivel = nivel;
+		this.idioma = idioma;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

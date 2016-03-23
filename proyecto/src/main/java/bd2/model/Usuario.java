@@ -1,6 +1,6 @@
 package bd2.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,7 +31,7 @@ public class Usuario {
 		return traducciones;
 	}
 
-	public Integer nivel(Idioma idioma) {
+	public int nivel(Idioma idioma) {
 		Integer max = 0;
 		for (Cursada cursada : cursadasAprobadas(idioma)) {
 			if (cursada.getNivel() > max) {
@@ -39,6 +39,18 @@ public class Usuario {
 			}
 		}
 		return max;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public Date getFechaDeCreacion() {
+		return fechaDeCreacion;
 	}
 
 	public Collection<Cursada> cursadasAprobadas(Idioma idioma) {

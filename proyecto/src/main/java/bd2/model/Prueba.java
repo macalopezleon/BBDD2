@@ -9,13 +9,13 @@ public class Prueba {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Prueba(Integer puntaje, Leccion leccion) {
+	public Prueba(Leccion leccion, Integer puntaje) {
 		super();
 		this.puntaje = puntaje;
 		this.leccion = leccion;
 	}
 
-	public Integer getPuntaje() {
+	public int getPuntaje() {
 		return puntaje;
 	}
 
