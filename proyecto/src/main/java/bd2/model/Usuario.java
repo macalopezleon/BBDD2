@@ -32,13 +32,7 @@ public class Usuario {
 	}
 
 	public int nivel(Idioma idioma) {
-		Integer max = 0;
-		for (Cursada cursada : cursadasAprobadas(idioma)) {
-			if (cursada.getNivel() > max) {
-				max = cursada.getNivel();
-			}
-		}
-		return max;
+		return this.cursadasAprobadas(idioma).size();
 	}
 
 	public String getEmail() {
