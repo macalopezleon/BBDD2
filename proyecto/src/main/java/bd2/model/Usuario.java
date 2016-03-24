@@ -8,8 +8,8 @@ public class Usuario {
 	private String email;
 	private String nombre;
 	private Date fechaDeCreacion;
-	private Collection<Cursada> cursadasRealizadas;
-	private Collection<Traduccion> traducciones;
+	private Collection<Cursada> cursadasRealizadas = new ArrayList<Cursada>();
+	private Collection<Traduccion> traducciones = new ArrayList<Traduccion>();
 
 	public Usuario() {
 		super();

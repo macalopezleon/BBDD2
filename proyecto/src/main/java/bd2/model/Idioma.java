@@ -2,7 +2,7 @@ package bd2.model;
 
 public class Idioma {
 	private String nombre;
-	private Diccionario diccionario;
+	private Diccionario diccionario = new Diccionario();
 
 	public Idioma() {
 		super();

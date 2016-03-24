@@ -1,11 +1,12 @@
 package bd2.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Curso {
 	private String nombre;
 	private Integer nivel;
-	private Collection<Leccion> lecciones;
+	private Collection<Leccion> lecciones = new ArrayList<Leccion>();
 	private Idioma idioma;
 
 	public Curso() {

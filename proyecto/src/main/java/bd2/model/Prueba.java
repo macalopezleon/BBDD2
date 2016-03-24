@@ -11,8 +11,15 @@ public class Prueba {
 
 	public Prueba(Leccion leccion, Integer puntaje) {
 		super();
-		this.puntaje = puntaje;
-		this.leccion = leccion;
+		if (puntaje > 100) {
+			throw new RuntimeException("No se puede usar valores mayores a 100 como puntaje de una prueba.");
+
+		} else if (puntaje < 0) {
+			throw new RuntimeException("No se puede usar valores negativos como puntaje de una prueba.");
+		} else {
+			this.puntaje = puntaje;
+			this.leccion = leccion;
+		}
 	}
 
 	public int getPuntaje() {
@@ -20,7 +27,14 @@ public class Prueba {
 	}
 
 	public void setPuntaje(Integer puntaje) {
-		this.puntaje = puntaje;
+		if (puntaje > 100) {
+			throw new RuntimeException("No se puede usar valores mayores a 100 como puntaje de una prueba.");
+
+		} else if (puntaje < 0) {
+			throw new RuntimeException("No se puede usar valores negativos como puntaje de una prueba.");
+		} else {
+			this.puntaje = puntaje;
+		}
 	}
 
 	public Leccion getLeccion() {

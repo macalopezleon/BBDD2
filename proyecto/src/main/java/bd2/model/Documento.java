@@ -1,11 +1,12 @@
 package bd2.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Documento {
 	private String nombre;
 	private Integer complejidad;
-	private Collection<Parrafo> parrafos;
+	private Collection<Parrafo> parrafos = new ArrayList<Parrafo>();
 	private Idioma idioma;
 
 	public Documento() {

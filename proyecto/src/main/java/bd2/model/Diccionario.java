@@ -1,9 +1,10 @@
 package bd2.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Diccionario {
-	private Map<String, String> definiciones;
+	private Map<String, String> definiciones = new HashMap<String, String>();
 	private String edicion;
 	private Idioma idioma;
 

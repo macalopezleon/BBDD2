@@ -1,6 +1,7 @@
 package bd2.model;
 
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
 public class Cursada {
 	private Date inicio;
 	private Curso curso;
-	private Collection<Prueba> pruebas;
+	private Collection<Prueba> pruebas = new ArrayList<Prueba>();
 	private Usuario usuario;
 
 	public Cursada() {
