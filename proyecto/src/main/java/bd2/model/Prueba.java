@@ -49,4 +49,15 @@ public class Prueba {
 		return this.puntaje >= 60;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return this.leccion.equals(((Prueba)obj).leccion);
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.leccion + " " + this.puntaje;
+	}
+
 }

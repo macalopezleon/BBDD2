@@ -21,4 +21,16 @@ public class Leccion {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return this.nombre.equals(((Leccion)obj).nombre);
+	}
+	
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.nombre;
+	}
+
 }

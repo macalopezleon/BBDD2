@@ -53,7 +53,12 @@ public class Cursada {
 	}
 
 	public Boolean finalizada() {
-		return this.curso.getLecciones().contains(this.leccionesAprobadas());
+		for (Leccion le : this.curso.getLecciones()) {
+			if(!this.leccionesAprobadas().contains(le)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void agregarPrueba(Prueba prueba) {

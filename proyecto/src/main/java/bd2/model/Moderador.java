@@ -1,14 +1,15 @@
 package bd2.model;
 
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
 import javax.rmi.CORBA.UtilDelegate;
 
 public class Moderador extends Usuario {
-	private Collection<Idioma> idiomas;
-	private Collection<Evaluacion> evaluaciones;
+	private Collection<Idioma> idiomas = new ArrayList<Idioma>();
+	private Collection<Evaluacion> evaluaciones = new ArrayList<Evaluacion>();
 
 	public Moderador(String email, String nombre, Date fechaDeCreacion) {
 		super(email, nombre, fechaDeCreacion);
@@ -28,9 +29,13 @@ public class Moderador extends Usuario {
 	}
 
 	public void evaluar(Traduccion traduccion, String descripcion, Integer puntaje) {
-		Date fecha = new Date(Calendar.getInstance().getTime().getTime());
-		Evaluacion unaEvaluacion = new Evaluacion(fecha, descripcion, true, traduccion, puntaje);
-		this.evaluaciones.add(unaEvaluacion);
+		if (this.manejaIdioma(traduccion.getIdioma())) {
+			Date fecha = new Date(Calendar.getInstance().getTime().getTime());
+			Evaluacion unaEvaluacion = new Evaluacion(fecha, descripcion, true, traduccion, puntaje);
+			this.evaluaciones.add(unaEvaluacion);
+		}else{
+			throw new RuntimeException("No se pueden evaluar traducciones de idiomas que el moderador no maneja.");
+		}
 	}
 
 	public Boolean manejaIdioma(Idioma idioma) {
