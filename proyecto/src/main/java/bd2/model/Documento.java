@@ -49,7 +49,7 @@ public class Documento {
 
 	public Parrafo agregarParrafo(String parrafo) {
 		Parrafo unParrafo = new Parrafo(parrafo, this);
-		this.parrafos.add(unParrafo);
+		this.getParrafos().add(unParrafo);
 		return unParrafo;
 	}
 

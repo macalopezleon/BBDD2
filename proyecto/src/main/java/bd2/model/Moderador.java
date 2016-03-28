@@ -25,25 +25,25 @@ public class Moderador extends Usuario {
 	}
 
 	public int reputacion() {
-		return this.evaluaciones.size();
+		return this.getEvaluaciones().size();
 	}
 
 	public void evaluar(Traduccion traduccion, String descripcion, Integer puntaje) {
 		if (this.manejaIdioma(traduccion.getIdioma())) {
 			Date fecha = new Date(Calendar.getInstance().getTime().getTime());
 			Evaluacion unaEvaluacion = new Evaluacion(fecha, descripcion, true, traduccion, puntaje);
-			this.evaluaciones.add(unaEvaluacion);
+			this.getEvaluaciones().add(unaEvaluacion);
 		}else{
 			throw new RuntimeException("No se pueden evaluar traducciones de idiomas que el moderador no maneja.");
 		}
 	}
 
 	public Boolean manejaIdioma(Idioma idioma) {
-		return this.idiomas.contains(idioma);
+		return this.getIdiomas().contains(idioma);
 	}
 
 	public void agregarIdioma(Idioma idioma) {
-		this.idiomas.add(idioma);
+		this.getIdiomas().add(idioma);
 	}
 
 }

@@ -58,7 +58,7 @@ public class Curso {
 	}
 
 	public void agregarLeccion(Leccion leccion) {
-		this.lecciones.add(leccion);
+		this.getLecciones().add(leccion);
 	}
 
 }

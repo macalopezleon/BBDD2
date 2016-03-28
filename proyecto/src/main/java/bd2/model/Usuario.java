@@ -32,7 +32,14 @@ public class Usuario {
 	}
 
 	public int nivel(Idioma idioma) {
-		return this.cursadasAprobadas(idioma).size();
+		int max = 0;
+		for (Cursada cursada : this.cursadasAprobadas(idioma)) {
+			if (cursada.getNivel() > max) {
+				max = cursada.getNivel();
+			}
+		}
+		// return this.cursadasAprobadas(idioma).size();
+		return max;
 	}
 
 	public String getEmail() {
@@ -49,7 +56,7 @@ public class Usuario {
 
 	public Collection<Cursada> cursadasAprobadas(Idioma idioma) {
 		Collection<Cursada> cursadasAprobadas = new ArrayList<Cursada>();
-		for (Cursada cursada : cursadasRealizadas) {
+		for (Cursada cursada : this.getCursadasRealizadas()) {
 			if (cursada.getIdioma().equals(idioma) && cursada.finalizada()) {
 				cursadasAprobadas.add(cursada);
 			}
@@ -59,11 +66,11 @@ public class Usuario {
 	}
 
 	public void agregarCursada(Cursada cursada) {
-		this.cursadasRealizadas.add(cursada);
+		this.getCursadasRealizadas().add(cursada);
 	}
 
 	public void agregarTraduccion(Traduccion traduccion) {
-		this.traducciones.add(traduccion);
+		this.getTraducciones().add(traduccion);
 	}
 
 }

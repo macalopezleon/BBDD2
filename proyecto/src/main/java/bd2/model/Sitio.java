@@ -25,15 +25,15 @@ public class Sitio {
 	}
 
 	public void registrarUsuario(Usuario usuario) {
-		this.usuarios.add(usuario);
+		this.getUsuarios().add(usuario);
 	}
 
 	public void agregarCurso(Curso curso) {
-		this.cursos.add(curso);
+		this.getCursos().add(curso);
 	}
 
 	public void agregarDocumento(Documento documento) {
-		this.documentos.add(documento);
+		this.getDocumentos().add(documento);
 	}
 
 }

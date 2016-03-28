@@ -40,11 +40,11 @@ public class Diccionario {
 	}
 
 	public void agregarDefinicion(String clave, String valor) {
-		this.definiciones.put(clave, valor);
+		this.getDefiniciones().put(clave, valor);
 	}
 
 	public String definicion(String clave) {
-		return this.definiciones.get(clave);
+		return this.getDefiniciones().get(clave);
 	}
 
 }

@@ -37,7 +37,7 @@ public class Traduccion extends Tarea {
 	}
 
 	public Idioma getIdiomaOriginal() {
-		return this.parrafo.getDocumento().getIdioma();
+		return this.getParrafo().getDocumento().getIdioma();
 	}
 
 }

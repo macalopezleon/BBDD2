@@ -46,18 +46,18 @@ public class Prueba {
 	}
 
 	public Boolean aprobada() {
-		return this.puntaje >= 60;
+		return this.getPuntaje() >= 60;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return this.leccion.equals(((Prueba)obj).leccion);
+		return this.getLeccion().equals(((Prueba)obj).getLeccion());
 	}
 	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.leccion + " " + this.puntaje;
+		return this.getLeccion() + " " + this.getPuntaje();
 	}
 
 }

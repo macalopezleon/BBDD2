@@ -39,7 +39,7 @@ public class Idioma {
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		return this.nombre.equals(((Idioma) obj).getNombre());
+		return this.getNombre().equals(((Idioma) obj).getNombre());
 	}
 
 }

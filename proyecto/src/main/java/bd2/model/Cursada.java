@@ -22,6 +22,7 @@ public class Cursada {
 		this.inicio = inicio;
 		this.curso = curso;
 		this.usuario = usuario;
+		usuario.agregarCursada(this);
 	}
 
 	public Date getInicio() {
@@ -53,7 +54,7 @@ public class Cursada {
 	}
 
 	public Boolean finalizada() {
-		for (Leccion le : this.curso.getLecciones()) {
+		for (Leccion le : this.getCurso().getLecciones()) {
 			if(!this.leccionesAprobadas().contains(le)){
 				return false;
 			}
@@ -62,12 +63,12 @@ public class Cursada {
 	}
 
 	public void agregarPrueba(Prueba prueba) {
-		this.pruebas.add(prueba);
+		this.getPruebas().add(prueba);
 	}
 
 	public Collection<Leccion> leccionesAprobadas() {
 		Collection<Leccion> leccionesAprobadas = new HashSet<Leccion>();
-		for (Prueba prueba : pruebas) {
+		for (Prueba prueba : this.getPruebas()) {
 			if (prueba.aprobada()) {
 				leccionesAprobadas.add(prueba.getLeccion());
 			}
@@ -76,11 +77,11 @@ public class Cursada {
 	}
 
 	public Integer getNivel() {
-		return this.curso.getNivel();
+		return this.getCurso().getNivel();
 	}
 
 	public Idioma getIdioma() {
-		return this.curso.getIdioma();
+		return this.getCurso().getIdioma();
 	}
 
 }

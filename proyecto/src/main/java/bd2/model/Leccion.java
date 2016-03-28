@@ -23,14 +23,14 @@ public class Leccion {
 
 	@Override
 	public boolean equals(Object obj) {
-		return this.nombre.equals(((Leccion)obj).nombre);
+		return this.getNombre().equals(((Leccion)obj).getNombre());
 	}
 	
 	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.nombre;
+		return this.getNombre();
 	}
 
 }
