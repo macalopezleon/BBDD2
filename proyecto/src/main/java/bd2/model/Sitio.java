@@ -2,6 +2,13 @@ package bd2.model;
 
 import java.util.Collection;
 
+/**
+ * Representa el sitio general encargado de registrar los usuarios, los
+ * documentos y los cursos
+ * 
+ * @author Grupo01
+ *
+ */
 public class Sitio {
 	private Collection<Curso> cursos;
 	private Collection<Usuario> usuarios;

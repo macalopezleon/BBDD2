@@ -3,6 +3,14 @@ package bd2.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Representa los cursos del sitio, que corresponderán a distintas cursadas que
+ * puede realizar el usuario está ligado a las distintas lecciones y
+ * corresponderá a un idioma en particular
+ * 
+ * @author Grupo01
+ *
+ */
 public class Curso {
 	private String nombre;
 	private Integer nivel;
@@ -14,6 +22,18 @@ public class Curso {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Constructor de Curso con parámetros
+	 * 
+	 * @param nombre
+	 *            String que se seteará en nombre
+	 * @param nivel
+	 *            Integer que se seteará en nivel
+	 * @param lecciones
+	 *            Collection<Leccion> que se seteará en lecciones
+	 * @param idioma
+	 *            Idioma que se seteará en idioma
+	 */
 	public Curso(String nombre, Integer nivel, Collection<Leccion> lecciones, Idioma idioma) {
 		super();
 		this.nombre = nombre;
@@ -22,6 +42,16 @@ public class Curso {
 		this.idioma = idioma;
 	}
 
+	/**
+	 * Constructor de Curso con parámetros
+	 * 
+	 * @param nombre
+	 *            String que se seteará en nombre
+	 * @param idioma
+	 *            Idioma que se seteará en idioma
+	 * @param nivel
+	 *            Integer que se seteará en nivel
+	 */
 	public Curso(String nombre, Idioma idioma, Integer nivel) {
 		super();
 		this.nombre = nombre;

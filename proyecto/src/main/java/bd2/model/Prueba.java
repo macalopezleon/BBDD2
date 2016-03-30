@@ -1,5 +1,12 @@
 package bd2.model;
 
+/**
+ * Representa las pruebas que llevarán a cabo los usuarios a lo largo de la
+ * cursada
+ * 
+ * @author Grupo01
+ *
+ */
 public class Prueba {
 	private Integer puntaje;
 	private Leccion leccion;
@@ -9,6 +16,15 @@ public class Prueba {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Constructor de Prueba con parámetros se setearán siempre y cuando los
+	 * valores de puntaje este entre 0 y 100
+	 * 
+	 * @param leccion
+	 *            Leccion que se seteará en leccion
+	 * @param puntaje
+	 *            Integer que se seteará en puntaje
+	 */
 	public Prueba(Leccion leccion, Integer puntaje) {
 		super();
 		if (puntaje > 100) {
@@ -45,15 +61,21 @@ public class Prueba {
 		this.leccion = leccion;
 	}
 
+	/**
+	 * Representa la verificacion de aprobacion de la prueba, dada en caso que
+	 * el puntaje iguale o supere los 60
+	 * 
+	 * @return Boolean
+	 */
 	public Boolean aprobada() {
 		return this.getPuntaje() >= 60;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return this.getLeccion().equals(((Prueba)obj).getLeccion());
+		return this.getLeccion().equals(((Prueba) obj).getLeccion());
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

@@ -1,5 +1,12 @@
 package bd2.model;
 
+/**
+ * Representa las lecciones que deberán realizar los usuarios para la aprobacion
+ * de las cursadas
+ * 
+ * @author Grupo01
+ *
+ */
 public class Leccion {
 	private String nombre;
 
@@ -8,6 +15,12 @@ public class Leccion {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Constructor de Leccion con parámetro
+	 * 
+	 * @param nombre
+	 *            String que se seteará en nombre
+	 */
 	public Leccion(String nombre) {
 		super();
 		this.nombre = nombre;
@@ -23,10 +36,9 @@ public class Leccion {
 
 	@Override
 	public boolean equals(Object obj) {
-		return this.getNombre().equals(((Leccion)obj).getNombre());
+		return this.getNombre().equals(((Leccion) obj).getNombre());
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

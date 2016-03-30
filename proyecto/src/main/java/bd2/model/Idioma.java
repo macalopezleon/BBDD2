@@ -1,5 +1,12 @@
 package bd2.model;
 
+/**
+ * Representa los idiomas del sistema en los cuales se pueden encontrar los
+ * documentos, los diccionarios y las traducciones que se llevaran a cabo
+ * 
+ * @author Grupo01
+ *
+ */
 public class Idioma {
 	private String nombre;
 	private Diccionario diccionario = new Diccionario();
@@ -9,12 +16,26 @@ public class Idioma {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Constructor de Idioma con parámetros
+	 * 
+	 * @param nombre
+	 *            String que se seteará en nombre
+	 * @param diccionario
+	 *            Diccionario que se seteará en diccionario
+	 */
 	public Idioma(String nombre, Diccionario diccionario) {
 		super();
 		this.nombre = nombre;
 		this.diccionario = diccionario;
 	}
 
+	/**
+	 * Constructor de Idioma con parámetro
+	 * 
+	 * @param nombre
+	 *            String que se seteará en nombre
+	 */
 	public Idioma(String nombre) {
 		super();
 		this.nombre = nombre;

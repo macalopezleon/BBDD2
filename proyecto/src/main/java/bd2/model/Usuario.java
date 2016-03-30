@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * La clase usuario hace...
- * @author default
+ * Representa los usuarios del sitio, quienes realizaran las cursadas que crean
+ * convenientes ademas podran realizar traducciones de documentos que seran
+ * evaluadas por moderadores
+ * 
+ * @author Grupo01
  *
  */
 public class Usuario {
@@ -20,11 +23,16 @@ public class Usuario {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
+	 * Constructor de Usuario con parámetros
 	 * 
 	 * @param email
+	 *            String que se seteará en email
 	 * @param nombre
+	 *            String que se seteará en nombre
 	 * @param fechaDeCreacion
+	 *            Date que se seteará en fechaDeCreacion
 	 */
 	public Usuario(String email, String nombre, Date fechaDeCreacion) {
 		super();
@@ -41,6 +49,14 @@ public class Usuario {
 		return traducciones;
 	}
 
+	/**
+	 * Representa el mayor nivel entre las cursadas aprobadas por el usuario
+	 * 
+	 * @param idioma
+	 *            Idioma por el que se realizará el filtro de las cursadas
+	 *            aprobadas
+	 * @return int valor máximo entre los niveles de las cursadas aprobadas
+	 */
 	public int nivel(Idioma idioma) {
 		int max = 0;
 		for (Cursada cursada : this.cursadasAprobadas(idioma)) {
@@ -63,6 +79,14 @@ public class Usuario {
 		return fechaDeCreacion;
 	}
 
+	/**
+	 * Colección de las cursadas aprobadas por el usuario
+	 * 
+	 * @param idioma
+	 *            Idioma por el que se realizará el filtro de entre las cursadas
+	 *            realizadas
+	 * @return Collection<Cursada> cursadasAprobadas para dicho Idioma
+	 */
 	public Collection<Cursada> cursadasAprobadas(Idioma idioma) {
 		Collection<Cursada> cursadasAprobadas = new ArrayList<Cursada>();
 		for (Cursada cursada : this.getCursadasRealizadas()) {

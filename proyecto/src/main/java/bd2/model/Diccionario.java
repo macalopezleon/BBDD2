@@ -3,6 +3,13 @@ package bd2.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Representa el diccionario con las distintas definiciones y el idioma al cual
+ * hace referencia
+ * 
+ * @author Grupo01
+ *
+ */
 public class Diccionario {
 	private Map<String, String> definiciones = new HashMap<String, String>();
 	private String edicion;
@@ -13,6 +20,14 @@ public class Diccionario {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Constructor de Diccionario con parámetros
+	 * 
+	 * @param idioma
+	 *            Idioma que se seteará en idioma
+	 * @param edicion
+	 *            String que se seteará en edicion
+	 */
 	public Diccionario(Idioma idioma, String edicion) {
 		super();
 		this.edicion = edicion;

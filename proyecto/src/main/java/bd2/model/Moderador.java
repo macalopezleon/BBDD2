@@ -7,10 +7,27 @@ import java.util.Collection;
 
 import javax.rmi.CORBA.UtilDelegate;
 
+/**
+ * Representa los moderadores del sitio encargados de evaluar las traducciones
+ * realizadas por los usuarios
+ * 
+ * @author Grupo01
+ *
+ */
 public class Moderador extends Usuario {
 	private Collection<Idioma> idiomas = new ArrayList<Idioma>();
 	private Collection<Evaluacion> evaluaciones = new ArrayList<Evaluacion>();
 
+	/**
+	 * Constructor de Moderador con parámetros
+	 * 
+	 * @param email
+	 *            String que se seteará en email
+	 * @param nombre
+	 *            String que se seteará en nombre
+	 * @param fechaDeCreacion
+	 *            Date que se seteará en fechaDeCreacion
+	 */
 	public Moderador(String email, String nombre, Date fechaDeCreacion) {
 		super(email, nombre, fechaDeCreacion);
 		// TODO Auto-generated constructor stub
@@ -24,20 +41,46 @@ public class Moderador extends Usuario {
 		return evaluaciones;
 	}
 
+	/**
+	 * Representa la cantidad de las evaluaciones realizadas conocido como
+	 * Reputacion
+	 * 
+	 * @return int que es un size de las evaluaciones
+	 */
 	public int reputacion() {
 		return this.getEvaluaciones().size();
 	}
 
+	/**
+	 * Representa la evaluacion llevada a cabo por el moderador y el registro de
+	 * la misma en caso que corresponda el idioma manejado por le moderador
+	 * 
+	 * @param traduccion
+	 *            Traduccion que permitirá validar el conociemiento del idioma
+	 *            por parte del moderador
+	 * @param descripcion
+	 *            String que se registrará en la creacion de la evaluacion
+	 * @param puntaje
+	 *            Integer que se registrará en la creacion de la evaluacion
+	 */
 	public void evaluar(Traduccion traduccion, String descripcion, Integer puntaje) {
 		if (this.manejaIdioma(traduccion.getIdioma())) {
 			Date fecha = new Date(Calendar.getInstance().getTime().getTime());
 			Evaluacion unaEvaluacion = new Evaluacion(fecha, descripcion, true, traduccion, puntaje);
 			this.getEvaluaciones().add(unaEvaluacion);
-		}else{
+		} else {
 			throw new RuntimeException("No se pueden evaluar traducciones de idiomas que el moderador no maneja.");
 		}
 	}
 
+	/**
+	 * Representa la verificacion del manejo del idioma recibido por parte del
+	 * moderador
+	 * 
+	 * @param idioma
+	 *            Idioma que servirá de filtro
+	 * @return Boolean
+	 */
 	public Boolean manejaIdioma(Idioma idioma) {
 		return this.getIdiomas().contains(idioma);
 	}

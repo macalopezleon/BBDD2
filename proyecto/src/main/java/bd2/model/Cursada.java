@@ -6,6 +6,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Representa las cursadas que pueden llevar a cabo los usuarios ademas de estar
+ * ligada a las prubas y al curso determinado
+ * 
+ * @author Grupo01
+ *
+ */
 public class Cursada {
 	private Date inicio;
 	private Curso curso;
@@ -17,6 +24,17 @@ public class Cursada {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Constructor de Cursada con parámetros
+	 * 
+	 * @param curso
+	 *            Curso que se seteará en curso
+	 * @param inicio
+	 *            Date que se seteará en inicio
+	 * @param usuario
+	 *            Usuario que se seteará en usuario, además asignará la cursada
+	 *            a dicho usuario
+	 */
 	public Cursada(Curso curso, Date inicio, Usuario usuario) {
 		super();
 		this.inicio = inicio;
@@ -53,9 +71,15 @@ public class Cursada {
 		return pruebas;
 	}
 
+	/**
+	 * Determina si la cursada esta finalizada o no para eso debe existir al
+	 * menos una prueba aprobada para cada leccion del curso correspondiente
+	 * 
+	 * @return Boolean
+	 */
 	public Boolean finalizada() {
 		for (Leccion le : this.getCurso().getLecciones()) {
-			if(!this.leccionesAprobadas().contains(le)){
+			if (!this.leccionesAprobadas().contains(le)) {
 				return false;
 			}
 		}
@@ -66,6 +90,12 @@ public class Cursada {
 		this.getPruebas().add(prueba);
 	}
 
+	/**
+	 * Colección de las lecciones aprobadas de la cursada
+	 * 
+	 * @return Collection<Leccion> de las lecciones aprobadas a partir de las
+	 *         pruebas registradas de la cursada
+	 */
 	public Collection<Leccion> leccionesAprobadas() {
 		Collection<Leccion> leccionesAprobadas = new HashSet<Leccion>();
 		for (Prueba prueba : this.getPruebas()) {
