@@ -4,6 +4,11 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * La clase usuario hace...
+ * @author default
+ *
+ */
 public class Usuario {
 	private String email;
 	private String nombre;
@@ -15,7 +20,12 @@ public class Usuario {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	/**
+	 * 
+	 * @param email
+	 * @param nombre
+	 * @param fechaDeCreacion
+	 */
 	public Usuario(String email, String nombre, Date fechaDeCreacion) {
 		super();
 		this.email = email;
@@ -38,7 +48,6 @@ public class Usuario {
 				max = cursada.getNivel();
 			}
 		}
-		// return this.cursadasAprobadas(idioma).size();
 		return max;
 	}
 
