@@ -16,12 +16,12 @@ public class Parrafo {
 	}
 
 	/**
-	 * Constructor de Parrafo con parámetros
+	 * Constructor de Parrafo con parametros
 	 * 
 	 * @param texto
-	 *            String que se seteará en texto
+	 *            String que se setea en texto
 	 * @param documento
-	 *            Documento que se seteará en documento
+	 *            Documento que se setea en documento
 	 */
 	public Parrafo(String texto, Documento documento) {
 		super();

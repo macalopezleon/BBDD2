@@ -20,14 +20,14 @@ public class Tarea {
 	}
 
 	/**
-	 * Constructor de Tarea con parámetros
+	 * Constructor de Tarea con parametros
 	 * 
 	 * @param fecha
-	 *            Date que se seteará en fecha
+	 *            Date que se setea en fecha
 	 * @param descripcion
-	 *            String que se seteará en descripcion
+	 *            String que se setea en descripcion
 	 * @param completa
-	 *            Boolean que se seteará en completa
+	 *            Boolean que se setea en completa
 	 */
 	public Tarea(Date fecha, String descripcion, Boolean completa) {
 		super();

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Representa los cursos del sitio, que corresponderán a distintas cursadas que
- * puede realizar el usuario está ligado a las distintas lecciones y
- * corresponderá a un idioma en particular
+ * Representa los cursos del sitio, que corresponder a distintas cursadas que
+ * puede realizar el usuario esta ligado a las distintas lecciones y
+ * corresponde a un idioma en particular
  * 
  * @author Grupo01
  *
@@ -23,16 +23,16 @@ public class Curso {
 	}
 
 	/**
-	 * Constructor de Curso con parámetros
+	 * Constructor de Curso con parametros
 	 * 
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 * @param nivel
-	 *            Integer que se seteará en nivel
+	 *            Integer que se setea en nivel
 	 * @param lecciones
-	 *            Collection<Leccion> que se seteará en lecciones
+	 *            Collection<Leccion> que se setea en lecciones
 	 * @param idioma
-	 *            Idioma que se seteará en idioma
+	 *            Idioma que se setea en idioma
 	 */
 	public Curso(String nombre, Integer nivel, Collection<Leccion> lecciones, Idioma idioma) {
 		super();
@@ -43,14 +43,14 @@ public class Curso {
 	}
 
 	/**
-	 * Constructor de Curso con parámetros
+	 * Constructor de Curso con parametros
 	 * 
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 * @param idioma
-	 *            Idioma que se seteará en idioma
+	 *            Idioma que se setea en idioma
 	 * @param nivel
-	 *            Integer que se seteará en nivel
+	 *            Integer que se setea en nivel
 	 */
 	public Curso(String nombre, Idioma idioma, Integer nivel) {
 		super();

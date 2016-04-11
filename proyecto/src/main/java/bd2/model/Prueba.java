@@ -1,7 +1,7 @@
 package bd2.model;
 
 /**
- * Representa las pruebas que llevarán a cabo los usuarios a lo largo de la
+ * Representa las pruebas que llevaran a cabo los usuarios a lo largo de la
  * cursada
  * 
  * @author Grupo01
@@ -17,13 +17,13 @@ public class Prueba {
 	}
 
 	/**
-	 * Constructor de Prueba con parámetros se setearán siempre y cuando los
+	 * Constructor de Prueba con parametros se setear siempre y cuando los
 	 * valores de puntaje este entre 0 y 100
 	 * 
 	 * @param leccion
-	 *            Leccion que se seteará en leccion
+	 *            Leccion que se setea en leccion
 	 * @param puntaje
-	 *            Integer que se seteará en puntaje
+	 *            Integer que se setea en puntaje
 	 */
 	public Prueba(Leccion leccion, Integer puntaje) {
 		super();

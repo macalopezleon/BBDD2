@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Representa los documentos del sitio y que serán traducidos por los usuarios y
+ * Representa los documentos del sitio y que seran traducidos por los usuarios y
  * que tienen un idioma en particular
  * 
  * @author Grupo01
@@ -22,16 +22,16 @@ public class Documento {
 	}
 
 	/**
-	 * Constructor de Documento con parámetros
+	 * Constructor de Documento con parametros
 	 * 
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 * @param complejidad
-	 *            Integer que se seteará en complejidad
+	 *            Integer que se setea en complejidad
 	 * @param parrafos
-	 *            Collection<Parrafo> que se seteará en parrafos
+	 *            Collection<Parrafo> que se setea en parrafos
 	 * @param idioma
-	 *            Idioma que se seteará en idioma
+	 *            Idioma que se setea en idioma
 	 */
 	public Documento(String nombre, Integer complejidad, Collection<Parrafo> parrafos, Idioma idioma) {
 		super();
@@ -42,12 +42,12 @@ public class Documento {
 	}
 
 	/**
-	 * Constructor de Documento con parámetros
+	 * Constructor de Documento con parametros
 	 * 
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 * @param idioma
-	 *            Idioma que se seteará en idioma
+	 *            Idioma que se setea en idioma
 	 */
 	public Documento(String nombre, Idioma idioma) {
 		this.nombre = nombre;

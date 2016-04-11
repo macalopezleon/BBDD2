@@ -25,14 +25,14 @@ public class Cursada {
 	}
 
 	/**
-	 * Constructor de Cursada con parámetros
+	 * Constructor de Cursada con parametros
 	 * 
 	 * @param curso
-	 *            Curso que se seteará en curso
+	 *            Curso que se setea en curso
 	 * @param inicio
-	 *            Date que se seteará en inicio
+	 *            Date que se setea en inicio
 	 * @param usuario
-	 *            Usuario que se seteará en usuario, además asignará la cursada
+	 *            Usuario que se setea en usuario, ademas asigna la cursada
 	 *            a dicho usuario
 	 */
 	public Cursada(Curso curso, Date inicio, Usuario usuario) {
@@ -91,7 +91,7 @@ public class Cursada {
 	}
 
 	/**
-	 * Colección de las lecciones aprobadas de la cursada
+	 * Coleccio de las lecciones aprobadas de la cursada
 	 * 
 	 * @return Collection<Leccion> de las lecciones aprobadas a partir de las
 	 *         pruebas registradas de la cursada

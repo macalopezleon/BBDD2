@@ -21,12 +21,12 @@ public class Diccionario {
 	}
 
 	/**
-	 * Constructor de Diccionario con parámetros
+	 * Constructor de Diccionario con parametros
 	 * 
 	 * @param idioma
-	 *            Idioma que se seteará en idioma
+	 *            Idioma que se setea en idioma
 	 * @param edicion
-	 *            String que se seteará en edicion
+	 *            String que se setea en edicion
 	 */
 	public Diccionario(Idioma idioma, String edicion) {
 		super();

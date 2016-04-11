@@ -19,14 +19,14 @@ public class Moderador extends Usuario {
 	private Collection<Evaluacion> evaluaciones = new ArrayList<Evaluacion>();
 
 	/**
-	 * Constructor de Moderador con parámetros
+	 * Constructor de Moderador con parametros
 	 * 
 	 * @param email
-	 *            String que se seteará en email
+	 *            String que se setea en email
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 * @param fechaDeCreacion
-	 *            Date que se seteará en fechaDeCreacion
+	 *            Date que se setea en fechaDeCreacion
 	 */
 	public Moderador(String email, String nombre, Date fechaDeCreacion) {
 		super(email, nombre, fechaDeCreacion);
@@ -56,12 +56,12 @@ public class Moderador extends Usuario {
 	 * la misma en caso que corresponda el idioma manejado por le moderador
 	 * 
 	 * @param traduccion
-	 *            Traduccion que permitirá validar el conociemiento del idioma
+	 *            Traduccion que permite validar el conociemiento del idioma
 	 *            por parte del moderador
 	 * @param descripcion
-	 *            String que se registrará en la creacion de la evaluacion
+	 *            String que se registra en la creacion de la evaluacion
 	 * @param puntaje
-	 *            Integer que se registrará en la creacion de la evaluacion
+	 *            Integer que se registra en la creacion de la evaluacion
 	 */
 	public void evaluar(Traduccion traduccion, String descripcion, Integer puntaje) {
 		if (this.manejaIdioma(traduccion.getIdioma())) {
@@ -78,7 +78,7 @@ public class Moderador extends Usuario {
 	 * moderador
 	 * 
 	 * @param idioma
-	 *            Idioma que servirá de filtro
+	 *            Idioma que sirve de filtro
 	 * @return Boolean
 	 */
 	public Boolean manejaIdioma(Idioma idioma) {

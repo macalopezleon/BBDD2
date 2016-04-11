@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * Representa las evaluaciones realizadas por los moderadores de las tareas
- * generadas por las traducciones de los párrafos de los documentos
+ * generadas por las traducciones de los parrafos de los documentos
  * 
  * @author Grupo01
  *
@@ -19,18 +19,18 @@ public class Evaluacion extends Tarea {
 	}
 
 	/**
-	 * Constructor de Evaluacion con parámetros
+	 * Constructor de Evaluacion con parametros
 	 * 
 	 * @param fecha
-	 *            Date que se seteará en fecha
+	 *            Date que se setea en fecha
 	 * @param descripcion
-	 *            String que se seteará en descripcion
+	 *            String que se setea en descripcion
 	 * @param completa
-	 *            Boolean que se seteará en completa
+	 *            Boolean que se setea en completa
 	 * @param traduccion
-	 *            Traduccion que se seteará en traduccion
+	 *            Traduccion que se setea en traduccion
 	 * @param puntaje
-	 *            Integer que se seteará en puntaje
+	 *            Integer que se setea en puntaje
 	 */
 	public Evaluacion(Date fecha, String descripcion, Boolean completa, Traduccion traduccion, Integer puntaje) {
 		super();

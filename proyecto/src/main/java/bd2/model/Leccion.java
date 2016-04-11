@@ -1,7 +1,7 @@
 package bd2.model;
 
 /**
- * Representa las lecciones que deberán realizar los usuarios para la aprobacion
+ * Representa las lecciones que debera realizar los usuarios para la aprobacion
  * de las cursadas
  * 
  * @author Grupo01
@@ -16,10 +16,10 @@ public class Leccion {
 	}
 
 	/**
-	 * Constructor de Leccion con parámetro
+	 * Constructor de Leccion con parametro
 	 * 
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 */
 	public Leccion(String nombre) {
 		super();

@@ -20,20 +20,20 @@ public class Traduccion extends Tarea {
 	}
 
 	/**
-	 * Constructor de Traduccion con parámetros
+	 * Constructor de Traduccion con parametros
 	 * 
 	 * @param fecha
-	 *            Date que se seteará en fecha>Tarea
+	 *            Date que se setea en fecha>Tarea
 	 * @param descripcion
-	 *            String que se seteará en descripcion>Tarea
+	 *            String que se setea en descripcion>Tarea
 	 * @param completa
-	 *            Boolean que se seteará en completa>Tarea
+	 *            Boolean que se setea en completa>Tarea
 	 * @param texto
-	 *            String que se seteará en texto
+	 *            String que se setea en texto
 	 * @param parrafo
-	 *            Parrafo que se seteará en parrafo
+	 *            Parrafo que se setea en parrafo
 	 * @param idioma
-	 *            Idioma que se seteará en idioma
+	 *            Idioma que se setea en idioma
 	 */
 	public Traduccion(Date fecha, String descripcion, Boolean completa, String texto, Parrafo parrafo, Idioma idioma) {
 		super(fecha, descripcion, completa);
@@ -60,7 +60,7 @@ public class Traduccion extends Tarea {
 	}
 
 	/**
-	 * Informa cual es el idioma original del documento que se está traduciendo
+	 * Informa cual es el idioma original del documento que se esta traduciendo
 	 * 
 	 * @return Idioma
 	 */

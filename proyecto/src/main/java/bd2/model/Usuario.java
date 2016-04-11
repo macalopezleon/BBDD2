@@ -25,14 +25,14 @@ public class Usuario {
 	}
 
 	/**
-	 * Constructor de Usuario con parámetros
+	 * Constructor de Usuario con parametros
 	 * 
 	 * @param email
-	 *            String que se seteará en email
+	 *            String que se setea en email
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 * @param fechaDeCreacion
-	 *            Date que se seteará en fechaDeCreacion
+	 *            Date que se setea en fechaDeCreacion
 	 */
 	public Usuario(String email, String nombre, Date fechaDeCreacion) {
 		super();
@@ -53,9 +53,9 @@ public class Usuario {
 	 * Representa el mayor nivel entre las cursadas aprobadas por el usuario
 	 * 
 	 * @param idioma
-	 *            Idioma por el que se realizará el filtro de las cursadas
+	 *            Idioma por el que se realizar el filtro de las cursadas
 	 *            aprobadas
-	 * @return int valor máximo entre los niveles de las cursadas aprobadas
+	 * @return int valor maximo entre los niveles de las cursadas aprobadas
 	 */
 	public int nivel(Idioma idioma) {
 		int max = 0;
@@ -80,10 +80,10 @@ public class Usuario {
 	}
 
 	/**
-	 * Colección de las cursadas aprobadas por el usuario
+	 * Coleccion de las cursadas aprobadas por el usuario
 	 * 
 	 * @param idioma
-	 *            Idioma por el que se realizará el filtro de entre las cursadas
+	 *            Idioma por el que se realiza el filtro de entre las cursadas
 	 *            realizadas
 	 * @return Collection<Cursada> cursadasAprobadas para dicho Idioma
 	 */

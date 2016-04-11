@@ -17,12 +17,12 @@ public class Idioma {
 	}
 
 	/**
-	 * Constructor de Idioma con parámetros
+	 * Constructor de Idioma con parametros
 	 * 
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 * @param diccionario
-	 *            Diccionario que se seteará en diccionario
+	 *            Diccionario que se setea en diccionario
 	 */
 	public Idioma(String nombre, Diccionario diccionario) {
 		super();
@@ -31,10 +31,10 @@ public class Idioma {
 	}
 
 	/**
-	 * Constructor de Idioma con parámetro
+	 * Constructor de Idioma con parametro
 	 * 
 	 * @param nombre
-	 *            String que se seteará en nombre
+	 *            String que se setea en nombre
 	 */
 	public Idioma(String nombre) {
 		super();
