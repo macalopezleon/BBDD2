@@ -18,6 +18,11 @@ public class Moderador extends Usuario {
 	private Collection<Idioma> idiomas = new ArrayList<Idioma>();
 	private Collection<Evaluacion> evaluaciones = new ArrayList<Evaluacion>();
 
+	public Moderador() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	/**
 	 * Constructor de Moderador con parametros
 	 * 

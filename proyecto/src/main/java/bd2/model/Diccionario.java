@@ -11,6 +11,7 @@ import java.util.Map;
  *
  */
 public class Diccionario {
+	private Long id;
 	private Map<String, String> definiciones = new HashMap<String, String>();
 	private String edicion;
 	private Idioma idioma;

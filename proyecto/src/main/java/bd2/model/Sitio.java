@@ -10,6 +10,7 @@ import java.util.Collection;
  *
  */
 public class Sitio {
+	private Long id;
 	private Collection<Curso> cursos;
 	private Collection<Usuario> usuarios;
 	private Collection<Documento> documentos;

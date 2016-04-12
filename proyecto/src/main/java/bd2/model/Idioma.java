@@ -8,6 +8,7 @@ package bd2.model;
  *
  */
 public class Idioma {
+	private Long id;
 	private String nombre;
 	private Diccionario diccionario = new Diccionario();
 

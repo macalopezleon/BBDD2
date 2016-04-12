@@ -14,6 +14,7 @@ import java.util.Set;
  *
  */
 public class Cursada {
+	private Long id;
 	private Date inicio;
 	private Curso curso;
 	private Collection<Prueba> pruebas = new ArrayList<Prueba>();

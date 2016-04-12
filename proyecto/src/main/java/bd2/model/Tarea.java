@@ -10,6 +10,7 @@ import java.util.Date;
  *
  */
 public class Tarea {
+	private Long id;
 	private Date fecha;
 	private String descripcion;
 	private Boolean completa;

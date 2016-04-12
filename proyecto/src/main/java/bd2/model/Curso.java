@@ -12,6 +12,7 @@ import java.util.Collection;
  *
  */
 public class Curso {
+	private Long id;
 	private String nombre;
 	private Integer nivel;
 	private Collection<Leccion> lecciones = new ArrayList<Leccion>();

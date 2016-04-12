@@ -7,6 +7,7 @@ package bd2.model;
  *
  */
 public class Parrafo {
+	private Long id;
 	private String texto;
 	private Documento documento;
 

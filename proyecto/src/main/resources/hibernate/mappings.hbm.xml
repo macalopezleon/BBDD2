@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="bd2.model">
+    <class name="Paso" table="PASOS">
+        <id name="id" column="ID_PASO">  
+            <generator class="native"/> 
+        </id>
+        <property name="fechaDeIngreso"></property>
+        <many-to-one name="pizarra"
+                     column="PIZARRA"
+                     unique="false" />
+    </class>
+    <class name="Pizarra" table="PIZARRAS">
+        <id name="id" column="ID_PIZARRA">
+            <generator class="native"/>
+        </id>
+        <property name="nombre"/>
+        <set name="tareas" cascade="save-update">
+            <key column="PIZARRA" not-null="false"/>
+            <one-to-many class="Tarea"/>
+        </set>
+    </class>
+    <class name="Tarea" table="TAREAS">
+        <id name="id" column="ID_TAREA">
+            <generator class="native"/>
+        </id>
+        <discriminator column="TIPO_TAREA" type="string" />
+        <property name="descripcion" />
+        <property name="fechaLimite" />  
+        <property name="completa" />
+        <list name="pasos" cascade="save-update">
+            <key column="TAREA" not-null="false"/>
+            <list-index column="ID_PASO_TAREA"/>
+            <one-to-many class="Paso" />
+        </list>
+        <subclass name="TareaDeDesarrollo"
+                  discriminator-value="TD">
+            <property name="requerimientos" length="500"/>
+        </subclass>
+        <subclass name="TareaDeInvestigacion"
+                  discriminator-value="TI">
+            <property name="hipotesis" />
+            <property name="resultado" />
+        </subclass>
+    </class>
+    <class name="Usuario" table="USUARIOS">
+        <id name="id" column="ID_USUARIO">
+            <generator class="native"/>
+        </id>
+        <property name="nombre"/>
+        <property name="email"/>
+    </class>
+    <class name="Sitio" table="SITIOS">
+        <id name="id" column="ID_SITIO">
+            <generator class="native"/>
+        </id>
+        <set name="usuarios" cascade="save-update">
+            <key column="SITIO" not-null="false"/>
+            <one-to-many class="Usuario"/>
+        </set>
+        <set name="proyectos" cascade="save-update">
+            <key column="SITIO" not-null="false"/>
+            <one-to-many class="Proyecto"/>
+        </set>
+    </class>
+    <class name="Proyecto" table="PROYECTOS">
+        <id name="id" column="ID_PROYECTO">
+            <generator class="native"/>
+        </id>
+        <set name="pizarras" cascade="save-update">
+            <key column="PROYECTO" not-null="false"/>
+            <one-to-many class="Pizarra"/>
+        </set>
+        <set name="pizarrasArchivadas" cascade="save-update">
+            <key column="PROYECTO_ARCHIVADA" not-null="false"/>
+            <one-to-many class="Pizarra"/>
+        </set>
+        <set name="perfiles" cascade="save-update">
+            <key column="PROYECTO" not-null="false"/>
+            <one-to-many class="PerfilDeUsuario"/>
+        </set>
+    </class>
+    <class name="PerfilDeUsuario" table="PERFILES_DE_USUARIO" >
+        <id name="id" column="ID_PERFIL">
+            <generator class="native"/>
+        </id>
+        <property name="fechaDeCreacion"/>
+        <many-to-one name="usuario"
+                     column="USUARIO"
+                     unique="false"/>
+        <joined-subclass name="PerfilDeAdministrador" table="PERFILES_DE_ADMINISTRADOR">
+            <key column="ID_PERFIL"/>
+            <property name="creador"/>
+        </joined-subclass>
+    </class>
+</hibernate-mapping>

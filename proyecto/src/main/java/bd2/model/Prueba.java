@@ -8,6 +8,7 @@ package bd2.model;
  *
  */
 public class Prueba {
+	private Long id;
 	private Integer puntaje;
 	private Leccion leccion;
 
