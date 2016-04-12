@@ -4,96 +4,151 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="bd2.model">
-    <class name="Paso" table="PASOS">
-        <id name="id" column="ID_PASO">  
-            <generator class="native"/> 
-        </id>
-        <property name="fechaDeIngreso"></property>
-        <many-to-one name="pizarra"
-                     column="PIZARRA"
-                     unique="false" />
-    </class>
-    <class name="Pizarra" table="PIZARRAS">
-        <id name="id" column="ID_PIZARRA">
-            <generator class="native"/>
-        </id>
-        <property name="nombre"/>
-        <set name="tareas" cascade="save-update">
-            <key column="PIZARRA" not-null="false"/>
-            <one-to-many class="Tarea"/>
-        </set>
-    </class>
-    <class name="Tarea" table="TAREAS">
-        <id name="id" column="ID_TAREA">
-            <generator class="native"/>
-        </id>
-        <discriminator column="TIPO_TAREA" type="string" />
-        <property name="descripcion" />
-        <property name="fechaLimite" />  
-        <property name="completa" />
-        <list name="pasos" cascade="save-update">
-            <key column="TAREA" not-null="false"/>
-            <list-index column="ID_PASO_TAREA"/>
-            <one-to-many class="Paso" />
-        </list>
-        <subclass name="TareaDeDesarrollo"
-                  discriminator-value="TD">
-            <property name="requerimientos" length="500"/>
-        </subclass>
-        <subclass name="TareaDeInvestigacion"
-                  discriminator-value="TI">
-            <property name="hipotesis" />
-            <property name="resultado" />
-        </subclass>
-    </class>
-    <class name="Usuario" table="USUARIOS">
-        <id name="id" column="ID_USUARIO">
-            <generator class="native"/>
-        </id>
-        <property name="nombre"/>
-        <property name="email"/>
-    </class>
-    <class name="Sitio" table="SITIOS">
-        <id name="id" column="ID_SITIO">
-            <generator class="native"/>
-        </id>
-        <set name="usuarios" cascade="save-update">
-            <key column="SITIO" not-null="false"/>
-            <one-to-many class="Usuario"/>
-        </set>
-        <set name="proyectos" cascade="save-update">
-            <key column="SITIO" not-null="false"/>
-            <one-to-many class="Proyecto"/>
-        </set>
-    </class>
-    <class name="Proyecto" table="PROYECTOS">
-        <id name="id" column="ID_PROYECTO">
-            <generator class="native"/>
-        </id>
-        <set name="pizarras" cascade="save-update">
-            <key column="PROYECTO" not-null="false"/>
-            <one-to-many class="Pizarra"/>
-        </set>
-        <set name="pizarrasArchivadas" cascade="save-update">
-            <key column="PROYECTO_ARCHIVADA" not-null="false"/>
-            <one-to-many class="Pizarra"/>
-        </set>
-        <set name="perfiles" cascade="save-update">
-            <key column="PROYECTO" not-null="false"/>
-            <one-to-many class="PerfilDeUsuario"/>
-        </set>
-    </class>
-    <class name="PerfilDeUsuario" table="PERFILES_DE_USUARIO" >
-        <id name="id" column="ID_PERFIL">
-            <generator class="native"/>
-        </id>
-        <property name="fechaDeCreacion"/>
-        <many-to-one name="usuario"
-                     column="USUARIO"
-                     unique="false"/>
-        <joined-subclass name="PerfilDeAdministrador" table="PERFILES_DE_ADMINISTRADOR">
-            <key column="ID_PERFIL"/>
-            <property name="creador"/>
-        </joined-subclass>
-    </class>
+	<class name="Cursada" table="CURSADAS">
+		<id name="id" column="ID_CURSADA">
+			<generator class="native" />
+		</id>
+		<property name="inicio" />
+		<many-to-one name="curso" column="CURSO" unique="false" />
+		<list name="pruebas" cascade="save-update">
+			<key column="CURSADA" not-null="false" />
+			<list-index column="ID_CURSADA_PRUEBA" />
+			<one-to-many class="Prueba" />
+		</list>
+		<many-to-one name="usuario" column="USUARIO" unique="false" />
+	</class>
+	<class name="Curso" table="CURSOS">
+		<id name="id" column="ID_CURSO">
+			<generator class="native" />
+		</id>
+		<property name="nombre" />
+		<property name="nivel" />
+		<list name="lecciones" cascade="save-update">
+			<key column="CURSO" not-null="false" />
+			<list-index column="ID_CURSO_LECCION" />
+			<one-to-many class="Leccion" />
+		</list>
+		<many-to-one name="idioma" column="IDIOMA" unique="false" />
+	</class>
+	<class name="Diccionario" table="DICCIONARIOS">
+		<id name="id" column="ID_DICCIONARIO">
+			<generator class="native" />
+		</id>
+		<set name="definiciones" cascade="save-update">
+			<key column="DICCIONARIO" not-null="false" />
+			<one-to-many class="Definicion" />
+		</set>
+		<property name="edicion"></property>
+		<many-to-one name="idioma" column="IDIOMA" unique="false" />
+	</class>
+	<class name="Documento" table="DOCUMENTOS">
+		<id name="id" column="ID_DOCUMENTO">
+			<generator class="native" />
+		</id>
+		<property name="nombre"></property>
+		<property name="complejidad"></property>
+		<list name="parrafos" cascade="save-update">
+			<key column="DOCUMENTO" not-null="false" />
+			<list-index column="ID_DOCUMENTO_PARRAFO" />
+			<one-to-many class="Parrafo" />
+		</list>
+		<many-to-one name="idioma" column="IDIOMA" unique="false" />
+	</class>
+	<class name="Idioma" table="IDIOMAS">
+		<id name="id" column="ID_IDIOMA">
+			<generator class="native" />
+		</id>
+		<property name="nombre"></property>
+		<many-to-one name="documento" column="DOCUMENTO" unique="false" />
+	</class>
+	<class name="Leccion" table="LECCIONES">
+		<id name="id" column="ID_LECCION">
+			<generator class="native" />
+		</id>
+		<property name="nombre"></property>
+	</class>
+	<class name="Parrafo" table="PARRAFOS">
+		<id name="id" column="ID_PARRAFO">
+			<generator class="native" />
+		</id>
+		<property name="texto"></property>
+		<many-to-one name="documento" column="DOCUMENTO" unique="false" />
+	</class>
+	<class name="Prueba" table="PRUEBAS">
+		<id name="id" column="ID_PRUEBA">
+			<generator class="native" />
+		</id>
+		<property name="puntaje"></property>
+		<many-to-one name="leccion" column="LECCION" unique="false" />
+	</class>
+	<class name="Sitio" table="SITIOS">
+		<id name="id" column="ID_SITIO">
+			<generator class="native" />
+		</id>
+		<set name="usuarios" cascade="save-update">
+			<key column="SITIO" not-null="false" />
+			<one-to-many class="Usuario" />
+		</set>
+		<set name="cursos" cascade="save-update">
+			<key column="SITIO" not-null="false" />
+			<one-to-many class="Curso" />
+		</set>
+	</class>
+	<class name="Tarea" table="TAREAS">
+		<id name="id" column="ID_TAREA">
+			<generator class="native" />
+		</id>
+		<discriminator column="TIPO_TAREA" type="string" />
+		<property name="descripcion" />
+		<property name="fecha" />
+		<property name="completa" />
+		<subclass name="Evaluacion" discriminator-value="EV">
+			<property name="puntaje" />
+			<many-to-one name="traduccion" column="TRADUCCION"
+				unique="false" />
+		</subclass>
+		<subclass name="Traduccion" discriminator-value="TR">
+			<property name="texto" />
+			<many-to-one name="idioma" column="IDIOMA" unique="false" />
+			<many-to-one name="parrafo" column="PARRAFO" unique="false" />
+		</subclass>
+	</class>
+	<class name="Usuario" table="USUARIOS">
+		<id name="id" column="ID_USUARIO">
+			<generator class="native" />
+		</id>
+		<property name="nombre" />
+		<property name="email" />
+	</class>
+	<class name="Usuario" table="USUARIOS">
+		<id name="id" column="ID_USUARIO">
+			<generator class="native" />
+		</id>
+		<property name="email" />
+		<property name="nombre" />
+		<property name="fechaDeCreacion" />
+		<list name="cursadasRealizadas" cascade="save-update">
+			<key column="USUARIO" not-null="false" />
+			<list-index column="ID_USUARIO_CURSADA_REALIZADA" />
+			<one-to-many class="Cursada" />
+		</list>
+		<list name="traducciones" cascade="save-update">
+			<key column="USUARIO" not-null="false" />
+			<list-index column="ID_USUARIO_TRADUCCION" />
+			<one-to-many class="Traduccion" />
+		</list>
+		<joined-subclass name="Moderador" table="MODERADOR">
+			<key column="ID_USUARIO" />
+			<list name="idiomas" cascade="save-update">
+				<key column="MODERADOR" not-null="false" />
+				<list-index column="ID_MODERADOR_IDIOMA" />
+				<one-to-many class="Idioma" />
+			</list>
+			<list name="evaluaciones" cascade="save-update">
+				<key column="MODERADOR" not-null="false" />
+				<list-index column="ID_MODERADOR_EVALUACION" />
+				<one-to-many class="Evaluacion" />
+			</list>
+		</joined-subclass>
+	</class>
 </hibernate-mapping>
