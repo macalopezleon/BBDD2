@@ -64,4 +64,17 @@ public class Idioma {
 		return this.getNombre().equals(((Idioma) obj).getNombre());
 	}
 
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 }
