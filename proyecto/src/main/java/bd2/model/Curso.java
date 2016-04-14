@@ -105,4 +105,10 @@ public class Curso {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void setLecciones(Collection<Leccion> lecciones) {
+		this.lecciones = lecciones;
+	}
+	
+	
 }

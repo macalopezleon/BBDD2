@@ -58,5 +58,7 @@ public class Evaluacion extends Tarea {
 	public void setTraduccion(Traduccion traduccion) {
 		this.traduccion = traduccion;
 	}
+	
+	
 
 }

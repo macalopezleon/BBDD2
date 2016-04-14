@@ -76,4 +76,10 @@ public class Diccionario {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void setDefiniciones(Map<String, String> definiciones) {
+		this.definiciones = definiciones;
+	}
+	
+	
 }

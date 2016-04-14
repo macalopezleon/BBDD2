@@ -120,4 +120,26 @@ public class Usuario {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setFechaDeCreacion(Date fechaDeCreacion) {
+		this.fechaDeCreacion = fechaDeCreacion;
+	}
+
+	public void setCursadasRealizadas(Collection<Cursada> cursadasRealizadas) {
+		this.cursadasRealizadas = cursadasRealizadas;
+	}
+
+	public void setTraducciones(Collection<Traduccion> traducciones) {
+		this.traducciones = traducciones;
+	}
+	
+	
 }

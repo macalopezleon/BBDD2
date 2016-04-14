@@ -74,4 +74,10 @@ public class Tarea {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void setCompleta(Boolean completa) {
+		this.completa = completa;
+	}
+	
+	
 }

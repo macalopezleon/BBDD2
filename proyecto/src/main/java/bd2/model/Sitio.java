@@ -1,6 +1,7 @@
 package bd2.model;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Representa el sitio general encargado de registrar los usuarios, los
@@ -11,9 +12,9 @@ import java.util.Collection;
  */
 public class Sitio {
 	private Long id;
-	private Collection<Curso> cursos;
-	private Collection<Usuario> usuarios;
-	private Collection<Documento> documentos;
+	private Collection<Curso> cursos = new HashSet<Curso>();
+	private Collection<Usuario> usuarios = new HashSet<Usuario>();
+	private Collection<Documento> documentos = new HashSet<Documento>();
 
 	public Sitio() {
 		super();
@@ -57,4 +58,18 @@ public class Sitio {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void setCursos(Collection<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	public void setUsuarios(Collection<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public void setDocumentos(Collection<Documento> documentos) {
+		this.documentos = documentos;
+	}
+	
+	
 }

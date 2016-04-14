@@ -129,5 +129,9 @@ public class Cursada {
 		this.id = id;
 	}
 
+	public void setPruebas(Collection<Prueba> pruebas) {
+		this.pruebas = pruebas;
+	}
+
 	
 }

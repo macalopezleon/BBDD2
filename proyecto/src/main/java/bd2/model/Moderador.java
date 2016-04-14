@@ -94,4 +94,13 @@ public class Moderador extends Usuario {
 		this.getIdiomas().add(idioma);
 	}
 
+	public void setIdiomas(Collection<Idioma> idiomas) {
+		this.idiomas = idiomas;
+	}
+
+	public void setEvaluaciones(Collection<Evaluacion> evaluaciones) {
+		this.evaluaciones = evaluaciones;
+	}
+
+	
 }

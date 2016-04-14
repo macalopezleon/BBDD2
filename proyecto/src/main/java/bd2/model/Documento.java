@@ -102,4 +102,10 @@ public class Documento {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public void setParrafos(Collection<Parrafo> parrafos) {
+		this.parrafos = parrafos;
+	}
+	
+	
 }

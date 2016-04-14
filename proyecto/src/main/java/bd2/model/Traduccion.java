@@ -68,4 +68,13 @@ public class Traduccion extends Tarea {
 		return this.getParrafo().getDocumento().getIdioma();
 	}
 
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public void setParrafo(Parrafo parrafo) {
+		this.parrafo = parrafo;
+	}
+
+	
 }

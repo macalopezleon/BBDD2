@@ -32,13 +32,13 @@
 		<id name="id" column="ID_DICCIONARIO">
 			<generator class="native" />
 		</id>
-		<map name="definiciones">
+		<map name="definiciones" cascade="save-update">
 			<key column="DICCIONARIO" not-null="false" />
 			<map-key column="DEFINICION_CLAVE" type="string"/>
 			<element column="DEFINICION_VALOR" type="string"/>
 		</map>
 		<property name="edicion" />
-		<many-to-one name="idioma" column="IDIOMA" unique="false" />
+		<many-to-one name="idioma" column="IDIOMA" unique="false" cascade="save-update"/>
 	</class>
 	<class name="Documento" table="DOCUMENTOS">
 		<id name="id" column="ID_DOCUMENTO">
@@ -70,7 +70,7 @@
 		<id name="id" column="ID_PARRAFO">
 			<generator class="native" />
 		</id>
-		<property name="texto" />
+		<property name="texto" type="text"/>
 		<many-to-one name="documento" column="DOCUMENTO" unique="false" />
 	</class>
 	<class name="Prueba" table="PRUEBAS">
@@ -79,38 +79,6 @@
 		</id>
 		<property name="puntaje" />
 		<many-to-one name="leccion" column="LECCION" unique="false" />
-	</class>
-	<class name="Sitio" table="SITIOS">
-		<id name="id" column="ID_SITIO">
-			<generator class="native" />
-		</id>
-		<set name="usuarios" cascade="save-update">
-			<key column="SITIO" not-null="false" />
-			<one-to-many class="Usuario" />
-		</set>
-		<set name="cursos" cascade="save-update">
-			<key column="SITIO" not-null="false" />
-			<one-to-many class="Curso" />
-		</set>
-	</class>
-	<class name="Tarea" table="TAREAS">
-		<id name="id" column="ID_TAREA">
-			<generator class="native" />
-		</id>
-		<discriminator column="TIPO_TAREA" type="string" />
-		<property name="descripcion" />
-		<property name="fecha" />
-		<property name="completa" />
-		<subclass name="Evaluacion" discriminator-value="EV">
-			<property name="puntaje" />
-			<many-to-one name="traduccion" column="TRADUCCION"
-				unique="false" />
-		</subclass>
-		<subclass name="Traduccion" discriminator-value="TR">
-			<property name="texto" />
-			<many-to-one name="idioma" column="IDIOMA" unique="false" />
-			<many-to-one name="parrafo" column="PARRAFO" unique="false" />
-		</subclass>
 	</class>
 	<class name="Usuario" table="USUARIOS">
 		<id name="id" column="ID_USUARIO">
@@ -134,7 +102,7 @@
 			<list name="idiomas" cascade="save-update">
 				<key column="MODERADOR" not-null="false" />
 				<list-index column="ID_MODERADOR_IDIOMA" />
-				<one-to-many class="Idioma" />
+				<many-to-many class="Idioma" />
 			</list>
 			<list name="evaluaciones" cascade="save-update">
 				<key column="MODERADOR" not-null="false" />
@@ -143,4 +111,41 @@
 			</list>
 		</joined-subclass>
 	</class>
+	<class name="Sitio" table="SITIOS">
+		<id name="id" column="ID_SITIO">
+			<generator class="native" />
+		</id>
+		<set name="usuarios" cascade="save-update">
+			<key column="SITIO" not-null="false" />
+			<one-to-many class="Usuario" />
+		</set>
+		<set name="cursos" cascade="save-update">
+			<key column="SITIO" not-null="false" />
+			<one-to-many class="Curso" />
+		</set>
+		<set name="documentos" cascade="save-update">
+			<key column="SITIO" not-null="false" />
+			<one-to-many class="Documento" />
+		</set>
+	</class>
+	<class name="Tarea" table="TAREAS">
+		<id name="id" column="ID_TAREA">
+			<generator class="native" />
+		</id>
+		<discriminator column="TIPO_TAREA" type="string" />
+		<property name="descripcion" />
+		<property name="fecha" />
+		<property name="completa" />
+		<subclass name="Evaluacion" discriminator-value="EV">
+			<property name="puntaje" />
+			<many-to-one name="traduccion" column="TRADUCCION"
+				unique="false" />
+		</subclass>
+		<subclass name="Traduccion" discriminator-value="TR">
+			<property name="texto" type="text"/>
+			<many-to-one name="idioma" column="IDIOMA" unique="false" />
+			<many-to-one name="parrafo" column="PARRAFO" unique="false" />
+		</subclass>
+	</class>
+	
 </hibernate-mapping>
