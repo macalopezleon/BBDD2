@@ -13,12 +13,12 @@ import java.util.Collection;
  *
  */
 public class Usuario {
-	private Long id;
-	private String email;
-	private String nombre;
-	private Date fechaDeCreacion;
-	private Collection<Cursada> cursadasRealizadas = new ArrayList<Cursada>();
-	private Collection<Traduccion> traducciones = new ArrayList<Traduccion>();
+	protected Long id;
+	protected String email;
+	protected String nombre;
+	protected Date fechaDeCreacion;
+	protected Collection<Cursada> cursadasRealizadas = new ArrayList<Cursada>();
+	protected Collection<Traduccion> traducciones = new ArrayList<Traduccion>();
 
 	public Usuario() {
 		super();

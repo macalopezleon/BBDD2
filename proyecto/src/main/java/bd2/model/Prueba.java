@@ -74,7 +74,8 @@ public class Prueba {
 
 	@Override
 	public boolean equals(Object obj) {
-		return this.getLeccion().equals(((Prueba) obj).getLeccion());
+		return this.getLeccion().equals(((Prueba) obj).getLeccion())
+				&& this.getPuntaje() == (((Prueba) obj).getPuntaje());
 	}
 
 	@Override
@@ -91,11 +92,11 @@ public class Prueba {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
 }

@@ -38,9 +38,9 @@ public class Evaluacion extends Tarea {
 		this.traduccion = traduccion;
 		super.setDescripcion(descripcion);
 		if (completa) {
-			super.completar();
+			this.completar();
 		}
-		super.setFecha(fecha);
+		this.setFecha(fecha);
 	}
 
 	public int getPuntaje() {
