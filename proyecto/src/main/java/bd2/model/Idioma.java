@@ -39,6 +39,7 @@ public class Idioma {
 	 */
 	public Idioma(String nombre) {
 		super();
+		this.diccionario = new Diccionario(this, "Carouse");
 		this.nombre = nombre;
 	}
 

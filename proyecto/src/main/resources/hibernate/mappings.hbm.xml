@@ -32,13 +32,13 @@
 		<id name="id" column="ID_DICCIONARIO">
 			<generator class="native" />
 		</id>
-		<map name="definiciones" cascade="save-update">
+		<map name="definiciones" cascade="all">
 			<key column="DICCIONARIO" not-null="false" />
 			<map-key column="DEFINICION_CLAVE" type="string"/>
 			<element column="DEFINICION_VALOR" type="string"/>
 		</map>
 		<property name="edicion" />
-		<many-to-one name="idioma" column="IDIOMA" unique="false" cascade="save-update"/>
+		<many-to-one name="idioma" column="IDIOMA"  cascade="all"/>
 	</class>
 	<class name="Documento" table="DOCUMENTOS">
 		<id name="id" column="ID_DOCUMENTO">
@@ -59,6 +59,7 @@
 			<generator class="native" />
 		</id>
 		<property name="nombre" />
+		<many-to-one name="diccionario" column="DICCIONARIO"  cascade="all"></many-to-one>
 	</class>
 	<class name="Leccion" table="LECCIONES">
 		<id name="id" column="ID_LECCION">
@@ -149,3 +150,6 @@
 	</class>
 	
 </hibernate-mapping>
+
+
+	
