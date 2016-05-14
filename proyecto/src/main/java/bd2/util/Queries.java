@@ -9,6 +9,9 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import bd2.model.Documento;
+import bd2.model.Moderador;
+import bd2.model.Tarea;
+import bd2.model.Usuario;
 
 /**
  *
@@ -34,13 +37,13 @@ public class Queries {
         Session session = sessions.openSession();
 
         primera(session);
-/*
+
         segunda(session);
-        
+          
         tercera(session);
-        
+           
         cuarta(session);
-        
+        /* 
         quinta(session);
         
         sexta(session);
@@ -54,7 +57,7 @@ public class Queries {
     public static void primera(Session session) {
         // a)
         tx = session.beginTransaction();
-        //tx.setTimeout(10); 
+
         Query query = session.createQuery("from Documento");
 
         List<Documento> documentos = query.list();
@@ -67,53 +70,47 @@ public class Queries {
     }
 
     public static void segunda(Session session) {
-        // b)
+        // c)
         tx = session.beginTransaction();
-        //tx.setTimeout(10); 
-        Query query = session.createQuery("from Tarea t where t.descripcion like :busqueda");
-        query.setParameter("busqueda", "%news%");
 
-        System.out.println("Listar las tareas cuya descripción contenga una secuencia específica de caracteres (enviada como parámetro). Imprimir en consola: \"Tarea: < descripción > \" \n");
-        List<Tarea> tareas = query.list();
-        for (Tarea t : tareas) {
-            System.out.println("Tarea: " + t.getDescripcion() + "\n");
+        Query query = session.createQuery("select u from Usuario u join u.cursadasRealizadas c where c.curso.idioma.nombre = 'Frances' and c.curso.nivel >= 3");
+        //query.setParameter("busqueda", "%news%");
+
+        System.out.println("C. Listar los usuarios que hayan iniciado una cursada de Francés de nivel 3");
+        List<Usuario> usuarios = query.list();
+        for (Usuario u : usuarios) {
+            System.out.println("Usuario: " + u.getNombre() + "\n");
         }
 
         tx.commit();
     }
 
     public static void tercera(Session session) {
-        // c)
+        // e)
         tx = session.beginTransaction();
         //tx.setTimeout(10); 
-        Query query = session.createQuery("select new list(p.nombre, size(p.tareas) as CantidadTareas) from Pizarra p group by p.id order by CantidadTareas DESC");
-        query.setFirstResult(0);
-        query.setMaxResults(1);
+        Query query = session.createQuery("from Traduccion t where t.idioma.nombre = 'Frances' and t.parrafo.documento.idioma.nombre = 'Ingles'");
 
-        List<List> listaResultados = query.list();
-        System.out.println("c.Obtener la Pizarra que tenga más tareas. Imprimir	\"Pizarra con más tareas: <nombre> (<cantidad de tareas> tareas)");
+        System.out.println("E. Listar traducciones completas del Inglés");
         System.out.println("\n");
-        for (int i = 0; i < listaResultados.size(); i++) {
-            System.out.println("Pizarra con más tareas: " + listaResultados.get(i).get(0) + " (" + listaResultados.get(i).get(1) + " tareas)\n");
+        List<Tarea> tareas = query.list();
+        for (Tarea t : tareas) {
+            System.out.println("Nombre: " + t.getDescripcion() + "\n");
         }
 
         tx.commit();
     }
 
     public static void cuarta(Session session) {
-        // d)
+        // b)
         tx = session.beginTransaction();
-        //tx.setTimeout(10); 
-        Query query = session.createQuery("select p from Proyecto p join p.pizarrasArchivadas");
 
-        List<Proyecto> proy = query.list();
-        System.out.println("Obtener los emails de los administradores de los proyectos que tengan al menos una pizarra archivada. Imprimir “Administrador: <email>”");
-        for (Proyecto p : proy) {
-            for (PerfilDeUsuario u : p.getPerfiles()) {
-                if (u.esAdministrador()) {
-                    System.out.println("Administrador: " + u.getUsuario().getEmail() + "\n");
-                }
-            }
+        Query query = session.createQuery("select m from Moderador m join m.evaluaciones e where e.traduccion.idioma.nombre = 'ingles'");
+
+        List<Moderador> moderadores = query.list();
+        System.out.println("B. Listar los emails de los moderadores que hayan evaluado traducciones al inglés");
+        for (Moderador m : moderadores) {
+            System.out.println("Moderador: " + m.getEmail() + "\n");
         }
 
         tx.commit();
