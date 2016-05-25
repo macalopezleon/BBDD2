@@ -101,8 +101,7 @@ public class Queries {
 
 		Query query = session.createQuery(
 				"select distinct u from Usuario u join u.cursadasRealizadas c where c.curso.idioma.nombre = 'Frances' and c.curso.nivel >= 3");
-		// query.setParameter("busqueda", "%news%");
-
+		
 		System.out.println("C. Listar los usuarios que hayan iniciado una cursada de Francés de nivel 3\n");
 		List<Usuario> usuarios = query.list();
 		for (Usuario u : usuarios) {
@@ -136,7 +135,6 @@ public class Queries {
 	public static void quinta(Session session) {
 		// e)
 		//tx = session.beginTransaction();
-		// tx.setTimeout(10);
 		Query query = session.createQuery(
 				"from Traduccion t where t.idioma.nombre = 'Frances' and t.parrafo.documento.idioma.nombre = 'Ingles'");
 
