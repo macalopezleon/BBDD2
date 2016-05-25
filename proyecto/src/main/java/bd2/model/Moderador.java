@@ -69,7 +69,7 @@ public class Moderador extends Usuario {
 	 *            Integer que se registra en la creacion de la evaluacion
 	 */
 	public void evaluar(Traduccion traduccion, String descripcion, Integer puntaje) {
-		if (this.manejaIdioma(traduccion.getIdioma())) {
+		if (this.manejaIdioma(traduccion.getIdioma()) && this.manejaIdioma(traduccion.getIdiomaOriginal())) {
 			Date fecha = new Date(Calendar.getInstance().getTime().getTime());
 			Evaluacion unaEvaluacion = new Evaluacion(fecha, descripcion, true, traduccion, puntaje);
 			this.getEvaluaciones().add(unaEvaluacion);

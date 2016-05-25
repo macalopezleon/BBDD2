@@ -10,7 +10,7 @@
 		<many-to-one name="curso" column="CURSO" unique="false" />
 		<list name="pruebas" cascade="save-update">
 			<key column="CURSADA" not-null="false" />
-			<list-index column="ID_CURSADA_PRUEBA" />
+			<list-index column="ORDEN_CURSADA" />
 			<one-to-many class="Prueba" />
 		</list>
 		<many-to-one name="usuario" column="USUARIO" unique="false" />
@@ -23,7 +23,7 @@
 		<property name="nivel" />
 		<list name="lecciones" cascade="save-update">
 			<key column="CURSO" not-null="false" />
-			<list-index column="ID_CURSO_LECCION" />
+			<list-index column="ORDEN_CURSO" />
 			<one-to-many class="Leccion" />
 		</list>
 		<many-to-one name="idioma" column="IDIOMA" unique="false" />
@@ -33,7 +33,7 @@
 			<generator class="native" />
 		</id>
 		<map name="definiciones" cascade="all">
-			<key column="DICCIONARIO" not-null="false" />
+			<key column="ID_DICCIONARIO" not-null="false" />
 			<map-key column="DEFINICION_CLAVE" type="string"/>
 			<element column="DEFINICION_VALOR" type="string"/>
 		</map>
@@ -48,7 +48,7 @@
 		<property name="complejidad" />
 		<list name="parrafos" cascade="save-update">
 			<key column="DOCUMENTO" not-null="false" />
-			<list-index column="ID_DOCUMENTO_PARRAFO" />
+			<list-index column="ORDEN_DOCUMENTO" />
 			<one-to-many class="Parrafo" />
 		</list>
 		<many-to-one name="idioma" column="IDIOMA" unique="false" />
@@ -90,24 +90,24 @@
 		<property name="fechaDeCreacion" />
 		<list name="cursadasRealizadas" cascade="save-update">
 			<key column="USUARIO" not-null="false" />
-			<list-index column="ID_USUARIO_CURSADA_REALIZADA" />
+			<list-index column="ORDEN_CURSADA_REALIZADA" />
 			<one-to-many class="Cursada" />
 		</list>
 		<list name="traducciones" cascade="save-update">
 			<key column="USUARIO" not-null="false" />
-			<list-index column="ID_USUARIO_TRADUCCION" />
+			<list-index column="ORDEN_TRADUCCION" />
 			<one-to-many class="Traduccion" />
 		</list>
 		<joined-subclass name="Moderador" table="MODERADOR">
 			<key column="ID_USUARIO" />
 			<list name="idiomas" cascade="save-update">
 				<key column="MODERADOR" not-null="false" />
-				<list-index column="ID_MODERADOR_IDIOMA" />
+				<list-index column="ORDEN_MODERADOR_IDIOMA" />
 				<many-to-many class="Idioma" />
 			</list>
 			<list name="evaluaciones" cascade="save-update">
 				<key column="MODERADOR" not-null="false" />
-				<list-index column="ID_MODERADOR_EVALUACION" />
+				<list-index column="ORDEN_MODERADOR_EVALUACION" />
 				<one-to-many class="Evaluacion" />
 			</list>
 		</joined-subclass>

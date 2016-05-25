@@ -64,7 +64,7 @@ public class Queries {
 
 	public static void primera(Session session) {
 		// a)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 
 		Query query = session.createQuery("from Documento");
 
@@ -73,46 +73,49 @@ public class Queries {
 		for (Documento d : documentos) {
 			System.out.println("Documento: " + d.getNombre() + "\n");
 		}
+		System.out.println("\n");
 
-		tx.commit();
+		//tx.commit();
 	}
 
 	public static void segunda(Session session) {
 		// b)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 
 		Query query = session.createQuery(
 				"select distinct m from Moderador m join m.evaluaciones e where e.traduccion.idioma.nombre = 'ingles'");
 
 		List<Moderador> moderadores = query.list();
-		System.out.println("B. Listar los emails de los moderadores que hayan evaluado traducciones al inglés");
+		System.out.println("B. Listar los emails de los moderadores que hayan evaluado traducciones al inglés\n");
 		for (Moderador m : moderadores) {
 			System.out.println("Email: " + m.getEmail() + "\n");
 		}
 
-		tx.commit();
+		System.out.println("\n");
+		//tx.commit();
 	}
 
 	public static void tercera(Session session) {
 		// c)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 
 		Query query = session.createQuery(
 				"select distinct u from Usuario u join u.cursadasRealizadas c where c.curso.idioma.nombre = 'Frances' and c.curso.nivel >= 3");
 		// query.setParameter("busqueda", "%news%");
 
-		System.out.println("C. Listar los usuarios que hayan iniciado una cursada de Francés de nivel 3");
+		System.out.println("C. Listar los usuarios que hayan iniciado una cursada de Francés de nivel 3\n");
 		List<Usuario> usuarios = query.list();
 		for (Usuario u : usuarios) {
 			System.out.println("Usuario: " + u.getNombre() + "\n");
 		}
+		System.out.println("\n");
 
-		tx.commit();
+		//tx.commit();
 	}
 
 	public static void cuarta(Session session) {
 		// d)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 
 		Query query = session.createQuery(
 				"select distinct m from Moderador m join m.evaluaciones e where (e.traduccion.fecha between :fechaDesde and :fechaHasta)");
@@ -120,35 +123,37 @@ public class Queries {
 		query.setString("fechaHasta", "2015-12-31");
 
 		System.out.println(
-				"D. Listar moderadores que hayan revisado alguna traducción entre dos fechas pasadas como argumento.");
+				"D. Listar moderadores que hayan revisado alguna traducción entre dos fechas pasadas como argumento.\n");
 		List<Moderador> moderadores = query.list();
 		for (Moderador m : moderadores) {
 			System.out.println("Nombre: " + m.getNombre() + "\n");
 		}
+		System.out.println("\n");
 
-		tx.commit();
+		//tx.commit();
 	}
 
 	public static void quinta(Session session) {
 		// e)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 		// tx.setTimeout(10);
 		Query query = session.createQuery(
 				"from Traduccion t where t.idioma.nombre = 'Frances' and t.parrafo.documento.idioma.nombre = 'Ingles'");
 
-		System.out.println("E. Listar traducciones completas del Inglés");
+		System.out.println("E. Listar traducciones completas del Inglés\n");
 		System.out.println("\n");
 		List<Tarea> tareas = query.list();
 		for (Tarea t : tareas) {
 			System.out.println("Nombre: " + t.getDescripcion() + "\n");
 		}
+		System.out.println("\n");
 
-		tx.commit();
+		//tx.commit();
 	}
 
 	public static void sexta(Session session) {
 		// f)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 		Query query = session.createQuery(
 				"select distinct u from Usuario u join u.cursadasRealizadas cr");
 
@@ -159,32 +164,33 @@ public class Queries {
 		for (Usuario u : usuarios) {
 			System.out.println("Usuario con cursada aprobada: " + u.getEmail() + "\n");
 		}
+		System.out.println("\n");
 		
-		tx.commit();
+		//tx.commit();
 
 	}
 
 	public static void septima(Session session) {
 		// g)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 		String palabra = "Leuchtturm";
 		Query query = session.createQuery(
 				"select distinct d from Diccionario d join d.definiciones def where index(def) = :palabra");
 		query.setString("palabra", palabra);
 
-		System.out.println("G. Obtener el idioma que define la palabra enviada como parámetro en su diccionario");
-		System.out.println("\n");
+		System.out.println("G. Obtener el idioma que define la palabra enviada como parámetro en su diccionario\n");
 		List<Diccionario> diccionarios = query.list();
 		for (Diccionario d : diccionarios) {
 			System.out.println("El idioma " + d.getIdioma().getNombre() + " define la palabra " + palabra + "\n");
 		}
+		System.out.println("\n");
 
-		tx.commit();
+		//tx.commit();
 	}
 
 	public static void octava(Session session) {
 		// h)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 		
 		Query query = session.createQuery(
 				"from Documento d where d not in (select doc from Documento doc join doc.parrafos p where p in (select t.parrafo from Traduccion t))");
@@ -196,13 +202,14 @@ public class Queries {
 		for (Documento d : documentos) {
 			System.out.println("El documento " + d.getNombre() + " no tiene ninguna traducción\n");
 		}
+		System.out.println("\n");
 		
-		tx.commit();
+		//tx.commit();
 	}
 
 	public static void novena(Session session) {
 		// i)
-		tx = session.beginTransaction();
+		//tx = session.beginTransaction();
 
 		String nombreIdioma = "Aleman";
 
@@ -213,12 +220,13 @@ public class Queries {
 		List<Documento> documentos = query.list();
 
 		System.out.println(
-				"I. Obtener los nombres de los documentos que tengan párrafos sin traducir al idioma de nombre enviado como parámetro.");
+				"I. Obtener los nombres de los documentos que tengan párrafos sin traducir al idioma de nombre enviado como parámetro.\n");
 		for (Documento d : documentos) {
 			System.out.println("El documento " + d.getNombre() + " no está totalmente traducido.\n");
 		}
+		System.out.println("\n");
 
-		tx.commit();
+		//tx.commit();
 	}
 
 }
