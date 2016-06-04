@@ -153,7 +153,13 @@ public class Queries {
 		// f)
 		//tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct u from Usuario u join u.cursadasRealizadas cr");
+				"select distinct u from Usuario u where u in ("
+						+ "select c.usuario from Cursada c join c.pruebas p "
+						+ "where p.puntaje >= 60 "
+						+ "and c.usuario = u "
+						+ "group by c.curso "
+						+ "having count(p) = ("
+								+ "select cur.lecciones.size from Curso cur where cur = c.curso))");
 
 		System.out.println(
 				"F. Obtener los emails de los usuarios con alguna cursada aprobada\n");
