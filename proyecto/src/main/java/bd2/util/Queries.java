@@ -44,7 +44,7 @@ public class Queries {
 
 		tercera(session);
 
-		cuarta(session);
+		cuarta(session,"2015-07-01","2015-12-31");
 
 		quinta(session);
 
@@ -61,11 +61,12 @@ public class Queries {
 		session.close();
 
 	}
-
+/**
+ * Lista los nombres de todos los documentos
+ * @param session se le envia la sesion de la base de datos
+ */
+	
 	public static void primera(Session session) {
-		// a)
-		//tx = session.beginTransaction();
-
 		Query query = session.createQuery("from Documento");
 
 		List<Documento> documentos = query.list();
@@ -74,14 +75,14 @@ public class Queries {
 			System.out.println("Documento: " + d.getNombre() + "\n");
 		}
 		System.out.println("\n");
-
-		//tx.commit();
 	}
+	/**
+	 * Lista los emails de los moderadores que hayan evaluado traducciones al inglés
+	 * @param session se le envia la sesion de la base de datos
+	 */
 
 	public static void segunda(Session session) {
-		// b)
-		//tx = session.beginTransaction();
-
+		
 		Query query = session.createQuery(
 				"select distinct m from Moderador m join m.evaluaciones e where e.traduccion.idioma.nombre = 'ingles'");
 
@@ -92,13 +93,14 @@ public class Queries {
 		}
 
 		System.out.println("\n");
-		//tx.commit();
 	}
 
+	/**
+	 * Lista los usuarios que hayan iniciado una cursada de Francés de nivel
+	 * @param session se le envia la sesion de la base de datos
+	 */
+	
 	public static void tercera(Session session) {
-		// c)
-		//tx = session.beginTransaction();
-
 		Query query = session.createQuery(
 				"select distinct u from Usuario u join u.cursadasRealizadas c where c.curso.idioma.nombre = 'Frances' and c.curso.nivel >= 3");
 		
@@ -108,18 +110,20 @@ public class Queries {
 			System.out.println("Usuario: " + u.getNombre() + "\n");
 		}
 		System.out.println("\n");
-
-		//tx.commit();
 	}
+	
+	/**
+	 * Lista los moderadores que hayan revisado alguna traducción entre dos fechas pasadas como argumento
+	 * @param session se le envia la sesion de la base de datos
+	 * @param fechaDesde se especifica la fecha desde donde comienza la busqueda
+	 * @param fechaHasta se especifica la fecha hasta donde termina la busqueda
+	 */
 
-	public static void cuarta(Session session) {
-		// d)
-		//tx = session.beginTransaction();
-
+	public static void cuarta(Session session, String fechaDesde, String fechaHasta) {
 		Query query = session.createQuery(
-				"select distinct m from Moderador m join m.evaluaciones e where (e.traduccion.fecha between :fechaDesde and :fechaHasta)");
-		query.setString("fechaDesde", "2015-07-01");
-		query.setString("fechaHasta", "2015-12-31");
+				"select distinct m from Moderador m join m.evaluaciones e where (e.fecha between :fechaDesde and :fechaHasta)");
+		query.setString("fechaDesde", fechaDesde);
+		query.setString("fechaHasta", fechaHasta);
 
 		System.out.println(
 				"D. Listar moderadores que hayan revisado alguna traducción entre dos fechas pasadas como argumento.\n");
@@ -129,12 +133,14 @@ public class Queries {
 		}
 		System.out.println("\n");
 
-		//tx.commit();
 	}
 
+	/**
+	 * Lista las traducciones completas del Inglés
+	 * @param session se le envia la sesion de la base de datos
+	 */
+	
 	public static void quinta(Session session) {
-		// e)
-		//tx = session.beginTransaction();
 		Query query = session.createQuery(
 				"from Traduccion t where t.idioma.nombre = 'Frances' and t.parrafo.documento.idioma.nombre = 'Ingles'");
 
@@ -146,12 +152,14 @@ public class Queries {
 		}
 		System.out.println("\n");
 
-		//tx.commit();
 	}
 
+	/**
+	 * Obtiene los emails de los usuarios con alguna cursada aprobada
+	 * @param session se le envia la sesion de la base de datos
+	 */
+	
 	public static void sexta(Session session) {
-		// f)
-		//tx = session.beginTransaction();
 		Query query = session.createQuery(
 				"select distinct u from Usuario u where u in ("
 						+ "select c.usuario from Cursada c join c.pruebas p "
@@ -169,14 +177,14 @@ public class Queries {
 			System.out.println("Usuario con cursada aprobada: " + u.getEmail() + "\n");
 		}
 		System.out.println("\n");
-		
-		//tx.commit();
 
 	}
-
+/**
+ * Obtiene el idioma que define la palabra enviada como parámetro en su diccionario
+ * @param session se le envia la sesion de la base de datos
+ */
+	
 	public static void septima(Session session) {
-		// g)
-		//tx = session.beginTransaction();
 		String palabra = "Leuchtturm";
 		Query query = session.createQuery(
 				"select distinct d from Diccionario d join d.definiciones def where index(def) = :palabra");
@@ -189,13 +197,14 @@ public class Queries {
 		}
 		System.out.println("\n");
 
-		//tx.commit();
 	}
 
-	public static void octava(Session session) {
-		// h)
-		//tx = session.beginTransaction();
-		
+	/**
+	 * Obtiene los nombres de los documentos que no tengan ningún párrafo traducido (en ningun idioma)
+	 * @param session se le envia la sesion de la base de datos
+	 */
+	
+	public static void octava(Session session) {		
 		Query query = session.createQuery(
 				"from Documento d where d not in (select doc from Documento doc join doc.parrafos p where p in (select t.parrafo from Traduccion t))");
 
@@ -207,14 +216,15 @@ public class Queries {
 			System.out.println("El documento " + d.getNombre() + " no tiene ninguna traducción\n");
 		}
 		System.out.println("\n");
-		
-		//tx.commit();
+
 	}
+	
+	/**
+	 * Obtiene los nombres de los documentos que tengan párrafos sin traducir al idioma de nombre enviado como parámetro
+	 * @param session se le envia la sesion de la base de datos
+	 */
 
 	public static void novena(Session session) {
-		// i)
-		//tx = session.beginTransaction();
-
 		String nombreIdioma = "Aleman";
 
 		Query query = session.createQuery(
@@ -230,7 +240,6 @@ public class Queries {
 		}
 		System.out.println("\n");
 
-		//tx.commit();
 	}
 
 }
