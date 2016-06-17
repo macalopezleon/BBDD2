@@ -50,11 +50,11 @@ public class Queries {
 
 		sexta(session);
 
-		septima(session);
+		septima(session, "Leuchtturm");
 
 		octava(session);
 
-		novena(session);
+		novena(session, "Aleman");
 		
 		
 
@@ -184,8 +184,8 @@ public class Queries {
  * @param session se le envia la sesion de la base de datos
  */
 	
-	public static void septima(Session session) {
-		String palabra = "Leuchtturm";
+	public static void septima(Session session, String palabra) {
+		
 		Query query = session.createQuery(
 				"select distinct d from Diccionario d join d.definiciones def where index(def) = :palabra");
 		query.setString("palabra", palabra);
@@ -224,9 +224,8 @@ public class Queries {
 	 * @param session se le envia la sesion de la base de datos
 	 */
 
-	public static void novena(Session session) {
-		String nombreIdioma = "Aleman";
-
+	public static void novena(Session session, String nombreIdioma) {
+		
 		Query query = session.createQuery(
 				"select distinct d from Documento d join d.parrafos p where p not in (select t.parrafo from Traduccion t where t.idioma.nombre = :nombreIdioma)");
 		query.setString("nombreIdioma", nombreIdioma);
