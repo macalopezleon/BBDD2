@@ -11,7 +11,7 @@ import java.util.Collection;
  *
  */
 public class Documento {
-	private Long id;
+	private long id;
 	private String nombre;
 	private Integer complejidad;
 	private Collection<Parrafo> parrafos = new ArrayList<Parrafo>();

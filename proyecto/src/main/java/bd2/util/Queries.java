@@ -1,5 +1,7 @@
 package bd2.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +46,25 @@ public class Queries {
 
 		tercera(session);
 
-		cuarta(session,"2015-07-01","2015-12-31");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+	    Date fd = null;
+		try {
+			fd = sdf.parse("2015-07-01");
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Date fh = null;
+		try {
+			fh = sdf.parse("2015-12-31");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cuarta(session,fd,fh);
 
 		quinta(session);
 
@@ -67,13 +87,18 @@ public class Queries {
  */
 	
 	public static void primera(Session session) {
-		Query query = session.createQuery("from Documento");
-
-		List<Documento> documentos = query.list();
+		
+		tx = session.beginTransaction();
+		Query query = session.createQuery("select nombre from Documento");
+		query.setFirstResult(0);
+		
+		List<String> documentos = query.list();
+		tx.commit();
+		
 		System.out.println("A. Listar los nombres de todos los documentos\n");
-		for (Documento d : documentos) {
-			System.out.println("Documento: " + d.getNombre() + "\n");
-		}
+		for (int i = 0; i < documentos.size(); i++) {
+			System.out.println("Documento: " + documentos.get(i) + "\n");
+        }
 		System.out.println("\n");
 	}
 	/**
@@ -83,15 +108,19 @@ public class Queries {
 
 	public static void segunda(Session session) {
 		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct m from Moderador m join m.evaluaciones e where e.traduccion.idioma.nombre = 'ingles'");
-
-		List<Moderador> moderadores = query.list();
+				"select distinct m.email from Moderador m join m.evaluaciones e where e.traduccion.idioma.nombre = 'ingles'");
+		query.setFirstResult(0);
+		
+		List<String> moderadores = query.list();
+		tx.commit();
+		
 		System.out.println("B. Listar los emails de los moderadores que hayan evaluado traducciones al inglés\n");
-		for (Moderador m : moderadores) {
-			System.out.println("Email: " + m.getEmail() + "\n");
-		}
-
+		for (int i = 0; i < moderadores.size(); i++) {
+			System.out.println("Email: " + moderadores.get(i) + "\n");
+        }
+		
 		System.out.println("\n");
 	}
 
@@ -101,11 +130,17 @@ public class Queries {
 	 */
 	
 	public static void tercera(Session session) {
+		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
 				"select distinct u from Usuario u join u.cursadasRealizadas c where c.curso.idioma.nombre = 'Frances' and c.curso.nivel >= 3");
 		
-		System.out.println("C. Listar los usuarios que hayan iniciado una cursada de Francés de nivel 3\n");
+		
 		List<Usuario> usuarios = query.list();
+		tx.commit();
+		
+		System.out.println("C. Listar los usuarios que hayan iniciado una cursada de Francés de nivel 3\n");
+		
 		for (Usuario u : usuarios) {
 			System.out.println("Usuario: " + u.getNombre() + "\n");
 		}
@@ -119,15 +154,21 @@ public class Queries {
 	 * @param fechaHasta se especifica la fecha hasta donde termina la busqueda
 	 */
 
-	public static void cuarta(Session session, String fechaDesde, String fechaHasta) {
+	public static void cuarta(Session session, Date fechaDesde, Date fechaHasta) {
+		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
 				"select distinct m from Moderador m join m.evaluaciones e where (e.fecha between :fechaDesde and :fechaHasta)");
-		query.setString("fechaDesde", fechaDesde);
-		query.setString("fechaHasta", fechaHasta);
+		query.setDate("fechaDesde", fechaDesde);
+		query.setDate("fechaHasta", fechaHasta);
 
+		
+		List<Moderador> moderadores = query.list();
+		tx.commit();
+		
 		System.out.println(
 				"D. Listar moderadores que hayan revisado alguna traducción entre dos fechas pasadas como argumento.\n");
-		List<Moderador> moderadores = query.list();
+		
 		for (Moderador m : moderadores) {
 			System.out.println("Nombre: " + m.getNombre() + "\n");
 		}
@@ -141,12 +182,18 @@ public class Queries {
 	 */
 	
 	public static void quinta(Session session) {
+		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"from Traduccion t where t.idioma.nombre = 'Frances' and t.parrafo.documento.idioma.nombre = 'Ingles'");
+				"from Traduccion t where t.idioma.nombre = 'Frances' and t.parrafo.documento.idioma.nombre = 'Ingles' and t.completa = true");
 
+		
+		List<Tarea> tareas = query.list();
+		tx.commit();
+		
 		System.out.println("E. Listar traducciones completas del Inglés\n");
 		System.out.println("\n");
-		List<Tarea> tareas = query.list();
+		
 		for (Tarea t : tareas) {
 			System.out.println("Nombre: " + t.getDescripcion() + "\n");
 		}
@@ -160,6 +207,8 @@ public class Queries {
 	 */
 	
 	public static void sexta(Session session) {
+		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
 				"select distinct u from Usuario u where u in ("
 						+ "select c.usuario from Cursada c join c.pruebas p "
@@ -169,10 +218,14 @@ public class Queries {
 						+ "having count(p) = ("
 								+ "select cur.lecciones.size from Curso cur where cur = c.curso))");
 
+		
+		List<Usuario> usuarios = query.list();
+		tx.commit();
+		
 		System.out.println(
 				"F. Obtener los emails de los usuarios con alguna cursada aprobada\n");
 		
-		List<Usuario> usuarios = query.list();
+		
 		for (Usuario u : usuarios) {
 			System.out.println("Usuario con cursada aprobada: " + u.getEmail() + "\n");
 		}
@@ -186,15 +239,22 @@ public class Queries {
 	
 	public static void septima(Session session, String palabra) {
 		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct d from Diccionario d join d.definiciones def where index(def) = :palabra");
+				"select distinct d.idioma.nombre from Diccionario d join d.definiciones def where index(def) = :palabra");
 		query.setString("palabra", palabra);
 
+		query.setFirstResult(0);
+		
+		List<String> diccionarios = query.list();
+		tx.commit();
+		
 		System.out.println("G. Obtener el idioma que define la palabra enviada como parámetro en su diccionario\n");
-		List<Diccionario> diccionarios = query.list();
-		for (Diccionario d : diccionarios) {
-			System.out.println("El idioma " + d.getIdioma().getNombre() + " define la palabra " + palabra + "\n");
+		for (int i = 0; i < diccionarios.size(); i++) {
+			System.out.println("El idioma " + diccionarios.get(i) + " define la palabra " + palabra + "\n");
 		}
+		
+		
 		System.out.println("\n");
 
 	}
@@ -204,17 +264,23 @@ public class Queries {
 	 * @param session se le envia la sesion de la base de datos
 	 */
 	
-	public static void octava(Session session) {		
+	public static void octava(Session session) {	
+		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"from Documento d where d not in (select doc from Documento doc join doc.parrafos p where p in (select t.parrafo from Traduccion t))");
-
+				"select d.nombre from Documento d where d not in (select doc from Documento doc join doc.parrafos p where p in (select t.parrafo from Traduccion t))");
+		query.setFirstResult(0);
+		
+		List<String> documentos = query.list();
+		tx.commit();
+		
 		System.out.println(
 				"H. Obtener los nombres de los documentos que no tengan ningún párrafo traducido (en ningun idioma)\n");
 		
-		List<Documento> documentos = query.list();
-		for (Documento d : documentos) {
-			System.out.println("El documento " + d.getNombre() + " no tiene ninguna traducción\n");
+		for (int i = 0; i < documentos.size(); i++) {
+			System.out.println("El documento " + documentos.get(i) + " no tiene ninguna traducción\n");
 		}
+		
 		System.out.println("\n");
 
 	}
@@ -226,16 +292,19 @@ public class Queries {
 
 	public static void novena(Session session, String nombreIdioma) {
 		
+		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct d from Documento d join d.parrafos p where p not in (select t.parrafo from Traduccion t where t.idioma.nombre = :nombreIdioma)");
+				"select distinct d.nombre from Documento d join d.parrafos p where p not in (select t.parrafo from Traduccion t where t.idioma.nombre = :nombreIdioma)");
 		query.setString("nombreIdioma", nombreIdioma);
-
-		List<Documento> documentos = query.list();
+		query.setFirstResult(0);
+		
+		List<String> documentos = query.list();
+		tx.commit();
 
 		System.out.println(
 				"I. Obtener los nombres de los documentos que tengan párrafos sin traducir al idioma de nombre enviado como parámetro.\n");
-		for (Documento d : documentos) {
-			System.out.println("El documento " + d.getNombre() + " no está totalmente traducido.\n");
+		for (int i = 0; i < documentos.size(); i++) {
+			System.out.println("El documento " + documentos.get(i) + " no está totalmente traducido.\n");
 		}
 		System.out.println("\n");
 

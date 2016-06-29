@@ -11,7 +11,7 @@ import java.util.HashSet;
  *
  */
 public class Sitio {
-	private Long id;
+	private long id;
 	private Collection<Curso> cursos = new HashSet<Curso>();
 	private Collection<Usuario> usuarios = new HashSet<Usuario>();
 	private Collection<Documento> documentos = new HashSet<Documento>();

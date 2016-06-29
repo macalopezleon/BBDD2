@@ -13,7 +13,7 @@ import java.util.Collection;
  *
  */
 public class Usuario {
-	protected Long id;
+	protected long id;
 	protected String email;
 	protected String nombre;
 	protected Date fechaDeCreacion;
