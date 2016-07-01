@@ -27,7 +27,6 @@ public class Queries {
 	private static Transaction tx = null;
 
 	public Queries() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) {
@@ -52,7 +51,6 @@ public class Queries {
 		try {
 			fd = sdf.parse("2015-07-01");
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -60,7 +58,6 @@ public class Queries {
 		try {
 			fh = sdf.parse("2015-12-31");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -110,7 +107,8 @@ public class Queries {
 		
 		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct m.email from Moderador m join m.evaluaciones e where e.traduccion.idioma.nombre = 'ingles'");
+				"select distinct m.email from Moderador m where exists (from Evaluacion e where e in elements(m.evaluaciones) and e.traduccion.idioma.nombre='ingles') ");
+		
 		query.setFirstResult(0);
 		
 		List<String> moderadores = query.list();
@@ -133,7 +131,7 @@ public class Queries {
 		
 		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct u from Usuario u join u.cursadasRealizadas c where c.curso.idioma.nombre = 'Frances' and c.curso.nivel >= 3");
+				"select distinct u from Usuario u where exists (from Cursada c where c in elements(u.cursadasRealizadas) and c.curso.idioma.nombre = 'Frances' and c.curso.nivel >= 3)");
 		
 		
 		List<Usuario> usuarios = query.list();
@@ -158,7 +156,7 @@ public class Queries {
 		
 		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct m from Moderador m join m.evaluaciones e where (e.fecha between :fechaDesde and :fechaHasta)");
+				"select distinct m from Moderador m where exists (from Evaluacion e where e in elements (m.evaluaciones) and e.fecha between :fechaDesde and :fechaHasta)");
 		query.setDate("fechaDesde", fechaDesde);
 		query.setDate("fechaHasta", fechaHasta);
 
@@ -210,13 +208,7 @@ public class Queries {
 		
 		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct u from Usuario u where u in ("
-						+ "select c.usuario from Cursada c join c.pruebas p "
-						+ "where p.puntaje >= 60 "
-						+ "and c.usuario = u "
-						+ "group by c.curso "
-						+ "having count(p) = ("
-								+ "select cur.lecciones.size from Curso cur where cur = c.curso))");
+				"select distinct u from Usuario u where exists(from Cursada c where c in elements(u.cursadasRealizadas) and not exists(from Leccion l where l in elements (c.curso.lecciones) and l not in (from Leccion l2 where exists(from Prueba p where p.puntaje >= 60 and p.leccion=l2 and p in elements(c.pruebas) and p.leccion in elements (c.curso.lecciones)))))");
 
 		
 		List<Usuario> usuarios = query.list();
@@ -268,7 +260,7 @@ public class Queries {
 		
 		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select d.nombre from Documento d where d not in (select doc from Documento doc join doc.parrafos p where p in (select t.parrafo from Traduccion t))");
+				"select d.nombre from Documento d where d not in (select t.parrafo.documento from Traduccion t))");
 		query.setFirstResult(0);
 		
 		List<String> documentos = query.list();
