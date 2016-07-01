@@ -90,13 +90,15 @@ public class Queries {
 		query.setFirstResult(0);
 		
 		List<String> documentos = query.list();
-		tx.commit();
+		
 		
 		System.out.println("A. Listar los nombres de todos los documentos\n");
 		for (int i = 0; i < documentos.size(); i++) {
 			System.out.println("Documento: " + documentos.get(i) + "\n");
         }
 		System.out.println("\n");
+		
+		tx.commit();
 	}
 	/**
 	 * Lista los emails de los moderadores que hayan evaluado traducciones al inglés
@@ -112,7 +114,7 @@ public class Queries {
 		query.setFirstResult(0);
 		
 		List<String> moderadores = query.list();
-		tx.commit();
+		
 		
 		System.out.println("B. Listar los emails de los moderadores que hayan evaluado traducciones al inglés\n");
 		for (int i = 0; i < moderadores.size(); i++) {
@@ -120,6 +122,8 @@ public class Queries {
         }
 		
 		System.out.println("\n");
+		
+		tx.commit();
 	}
 
 	/**
@@ -135,7 +139,7 @@ public class Queries {
 		
 		
 		List<Usuario> usuarios = query.list();
-		tx.commit();
+		
 		
 		System.out.println("C. Listar los usuarios que hayan iniciado una cursada de Francés de nivel 3\n");
 		
@@ -143,6 +147,8 @@ public class Queries {
 			System.out.println("Usuario: " + u.getNombre() + "\n");
 		}
 		System.out.println("\n");
+		
+		tx.commit();
 	}
 	
 	/**
@@ -162,7 +168,7 @@ public class Queries {
 
 		
 		List<Moderador> moderadores = query.list();
-		tx.commit();
+		
 		
 		System.out.println(
 				"D. Listar moderadores que hayan revisado alguna traducción entre dos fechas pasadas como argumento.\n");
@@ -171,6 +177,8 @@ public class Queries {
 			System.out.println("Nombre: " + m.getNombre() + "\n");
 		}
 		System.out.println("\n");
+		
+		tx.commit();
 
 	}
 
@@ -187,7 +195,7 @@ public class Queries {
 
 		
 		List<Tarea> tareas = query.list();
-		tx.commit();
+		
 		
 		System.out.println("E. Listar traducciones completas del Inglés\n");
 		System.out.println("\n");
@@ -196,6 +204,8 @@ public class Queries {
 			System.out.println("Nombre: " + t.getDescripcion() + "\n");
 		}
 		System.out.println("\n");
+		
+		tx.commit();
 
 	}
 
@@ -212,7 +222,7 @@ public class Queries {
 
 		
 		List<Usuario> usuarios = query.list();
-		tx.commit();
+		
 		
 		System.out.println(
 				"F. Obtener los emails de los usuarios con alguna cursada aprobada\n");
@@ -222,6 +232,8 @@ public class Queries {
 			System.out.println("Usuario con cursada aprobada: " + u.getEmail() + "\n");
 		}
 		System.out.println("\n");
+		
+		tx.commit();
 
 	}
 /**
@@ -239,7 +251,7 @@ public class Queries {
 		query.setFirstResult(0);
 		
 		List<String> diccionarios = query.list();
-		tx.commit();
+		
 		
 		System.out.println("G. Obtener el idioma que define la palabra enviada como parámetro en su diccionario\n");
 		for (int i = 0; i < diccionarios.size(); i++) {
@@ -248,6 +260,8 @@ public class Queries {
 		
 		
 		System.out.println("\n");
+		
+		tx.commit();
 
 	}
 
@@ -264,7 +278,7 @@ public class Queries {
 		query.setFirstResult(0);
 		
 		List<String> documentos = query.list();
-		tx.commit();
+		
 		
 		System.out.println(
 				"H. Obtener los nombres de los documentos que no tengan ningún párrafo traducido (en ningun idioma)\n");
@@ -274,6 +288,8 @@ public class Queries {
 		}
 		
 		System.out.println("\n");
+		
+		tx.commit();
 
 	}
 	
@@ -291,7 +307,7 @@ public class Queries {
 		query.setFirstResult(0);
 		
 		List<String> documentos = query.list();
-		tx.commit();
+		
 
 		System.out.println(
 				"I. Obtener los nombres de los documentos que tengan párrafos sin traducir al idioma de nombre enviado como parámetro.\n");
@@ -299,6 +315,8 @@ public class Queries {
 			System.out.println("El documento " + documentos.get(i) + " no está totalmente traducido.\n");
 		}
 		System.out.println("\n");
+		
+		tx.commit();
 
 	}
 
