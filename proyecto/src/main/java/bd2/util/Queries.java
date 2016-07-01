@@ -302,7 +302,7 @@ public class Queries {
 		
 		tx = session.beginTransaction();
 		Query query = session.createQuery(
-				"select distinct d.nombre from Documento d join d.parrafos p where p not in (select t.parrafo from Traduccion t where t.idioma.nombre = :nombreIdioma)");
+				"select distinct d.nombre from Documento d where exists (from Parrafo p where (p in elements(d.parrafos)) and (p not in (select t.parrafo from Traduccion t where t.idioma.nombre = :nombreIdioma)))");
 		query.setString("nombreIdioma", nombreIdioma);
 		query.setFirstResult(0);
 		
